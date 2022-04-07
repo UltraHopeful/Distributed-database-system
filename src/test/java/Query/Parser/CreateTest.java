@@ -13,12 +13,11 @@ class CreateTest {
     String createValidDB2 = "CREATE DATABASE trial1;";
     String createInvalidDB1 = "CREATE DATABASE IF NOT EXISTS Trial1 trial2;";
     String createInvalidDB2 = "CREATE DATABASE trial1 trial2;";
-    String createInvalidDB3 = "CREATE DATABASE";
-
+    String createInvalidDB3 = "CREATE DATABASE  ;";
 
 
     String createValidTable1 = "CREATE TABLE todo  ( todo_id INT, todo VARCHAR, is_completed BOOLEAN, PRIMARY KEY (todo_id), FOREIGN KEY (task_id) REFERENCES tasks (task_id) ) ;";
-    String createValidTable2 = "CREATE TABLE todo  ( todo_id INT, todo VARCHAR, is_completed BOOLEAN, PRIMARY KEY (todo_id), FOREIGN KEY (task_id) REFERENCES tasks (task_id) ) ;";
+    String createValidTable2 = "CREATE TABLE IF NOT EXISTS todo  ( todo_id INT, todo VARCHAR, is_completed BOOLEAN, PRIMARY KEY (todo_id), FOREIGN KEY (task_id) REFERENCES tasks (task_id), FOREIGN KEY (task_id) REFERENCES tasks (task_id)) ;";
     String createInvalidTable1 = "CREATE TABLE todo  (( todo_id INT, todo VARCHAR, is_completed BOOLEAN, PRIMARY KEY todo_id, FOREIGN KEY (task_id) REFERENCES tasks (task_id) ) ;";
     String createInvalidTable2 = "CREATE TABLE tod  (( todo_id INT, todo VARCHAR, is_completed BOOLEAN, PRIMARY KEY todo_id, FOREIGN KEY (task_id) REFERENCES tasks (task_id) ) ;";
 
@@ -37,6 +36,7 @@ class CreateTest {
 
     @Test
     public void createTableTest(){
+        queryParse.queryCheck("USE trial1;");
         assertEquals(true, queryParse.queryCheck(createValidTable1));
         System.out.println();
         assertEquals(true, queryParse.queryCheck(createValidTable2));

@@ -1,16 +1,31 @@
 package Query.Parser;
 
-import java.awt.*;
-import java.io.File;
+import Query.GlobalConfig;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Create {
 
-    public boolean check(String queryString){
-        boolean result = false;
-        String pathSeparator = File.separator;
+    GlobalConfig globalConfig = new GlobalConfig();
+    String basePath = globalConfig.getBasePath();
+    String filePathSeparator = globalConfig.getPathSeparator();
+    String delimeter = globalConfig.getDelimeter();
+
+    public boolean check(String queryString) {
+        boolean isValidQuery = false;
+
+        List<String> tableColumnName = new ArrayList<>();
+        List<String> tableColumnType = new ArrayList<>();
+        List<String> primaryKeys = new ArrayList<>();
+        List<String> foreignKeys = new ArrayList<>();
+        List<String> foreignRefKeys = new ArrayList<>();
+
+        String currentDataBase;
 
         String createParseRegex = "(?:create)\\s+(?:table|database)(?:\\s+(?:IF NOT EXISTS))?\\s+(\\w*)(;|([^;]*))";
 
@@ -25,24 +40,29 @@ public class Create {
         // group 3 - if it's contains (table structure)
         Matcher createParseMatcher = createParsePattern.matcher(queryString);
 
-        if(queryString.toLowerCase().contains("database")){
+        if (queryString.toLowerCase().contains("database")) {
             System.out.println("database detected");
-            if(createParseMatcher.find()) {
+            if (createParseMatcher.find()) {
                 if (createParseMatcher.group(2).equals(";")) {
                     String dbName = createParseMatcher.group(1).toLowerCase();
-                    System.out.println("Database Name " + dbName);
-                    File folder = new File("system"+pathSeparator+""+dbName);
-                    if(dbName=="" && folder.exists()){
-                        System.out.println("Database named "+dbName+" already exists");
+                    if(!dbName.isBlank() && !dbName.isEmpty()) {
+                        System.out.println("Database Name " + dbName);
+                        File folder = new File(basePath + dbName);
+                        if (folder.exists()) {
+                            System.out.println("Database named " + dbName + " already exists");
+                        } else {
+                            folder.mkdirs();
+                            System.out.println("Database Created successfully");
+                        }
+                        isValidQuery = true;
                     }
                     else{
-                        folder.mkdirs();
-                        System.out.println("Database Created successfully");
+                        System.out.println("Db name is empty.");
+                        isValidQuery = false;
                     }
-                    result = true;
                 } else {
                     System.out.println("invalid database query");
-                    result = false;
+                    isValidQuery = false;
                 }
             }
         }
@@ -51,38 +71,60 @@ public class Create {
 //        primaryKey=id
 //        foreigeKey=[salaryId]
 //        foreigeKeyRef=[salary.id]
-        else if(queryString.toLowerCase().contains("table")){
+        else if (queryString.toLowerCase().contains("table")) {
+            currentDataBase = globalConfig.getGlobalDatabase();
             System.out.println("table detected");
-            if(createParseMatcher.find()) {
-                if (!createParseMatcher.group(2).equals(";")) {
-                    System.out.println("valid table query");
-                    String tableName = createParseMatcher.group(1).toLowerCase();
-                    System.out.println("Table Name " + tableName);
-                    String structure = createParseMatcher.group(3).toLowerCase();
-                    structure = structure.trim();
-                    structure = structure.substring(1,structure.length()-1);
-                    System.out.println("structure = " + structure);
-                    String[] structureList = structure.split(",");
-                    Matcher structureParseMatcher = structureParsePattern.matcher(structure);
-                    System.out.println(structureList.length);
+            System.out.println("currentDataBase = " + currentDataBase);
+            if (currentDataBase != null) {
+                if (createParseMatcher.find()) {
+                    if (!createParseMatcher.group(2).equals(";")) {
+                        System.out.println("valid table query");
+                        String tableName = createParseMatcher.group(1).toLowerCase();
+                        System.out.println("Table Name " + tableName);
+                        String structure = createParseMatcher.group(3).toLowerCase();
+                        structure = structure.trim();
+                        structure = structure.substring(1, structure.length() - 1);
+                        System.out.println("structure = " + structure);
+                        String[] structureList = structure.split(",");
+                        Matcher structureParseMatcher = structureParsePattern.matcher(structure);
+                        System.out.println(structureList.length);
 //                    System.out.println(structureParseMatcher.results().count());
-                    if(structureList.length == structureParseMatcher.results().count()){
-                        System.out.println("valid");
-                          structureParseMatcher.reset();
-                          while(structureParseMatcher.find()){
-                              if(structureParseMatcher.group(1).equals("primary key")){
-                                  System.out.println("structureParseMatcher.group(3) = " + structureParseMatcher.group(3));
-                              } else if(structureParseMatcher.group(1).equals("foreign key")){
-                                  System.out.println("structureParseMatcher.group(3) = " + structureParseMatcher.group(3));
-                              } else{
-                                  System.out.println("structureParseMatcher.group(3) = " + structureParseMatcher.group(1));
-                                  System.out.println("structureParseMatcher.group(2) = " + structureParseMatcher.group(2));
-                              }
-                          }
-                    }
-                    else{
-                        System.out.println("Invalid query");
-                    }
+                        if (structureList.length == structureParseMatcher.results().count()) {
+                            System.out.println("valid");
+                            structureParseMatcher.reset();
+                            while (structureParseMatcher.find()) {
+                                if (structureParseMatcher.group(1).equals("primary key")) {
+                                    System.out.println("Primary Key");
+                                    String primaryKey = structureParseMatcher.group(3).trim();
+                                    System.out.println("structureParseMatcher.group(3) = " + primaryKey);
+                                    primaryKeys.add(primaryKey);
+                                } else if (structureParseMatcher.group(1).equals("foreign key")) {
+                                    System.out.println("Foreign Key");
+                                    String foreignKey= structureParseMatcher.group(3).trim();
+                                    String foreignRefKey = structureParseMatcher.group(4)+"."+structureParseMatcher.group(5).trim();
+                                    System.out.println("structureParseMatcher.group(3) = " + foreignKey);
+                                    foreignKeys.add(foreignKey);
+                                    System.out.println("structureParseMatcher.group(4) = " + foreignRefKey);
+                                    foreignRefKeys.add(foreignRefKey);
+                                } else {
+                                    System.out.println("Data column value");
+                                    String columnName = structureParseMatcher.group(1).trim();
+                                    String columnType = structureParseMatcher.group(2).trim();
+                                    System.out.println("columnName = " + columnName);
+                                    System.out.println("columnType = " + columnType);
+                                    tableColumnName.add(columnName);
+                                    tableColumnType.add(columnType);
+                                }
+                                writeTable(currentDataBase,tableName,tableColumnName);
+                                writeStructure(currentDataBase,tableName,tableColumnName,tableColumnType);
+                                writeKey(currentDataBase,tableName,primaryKeys,foreignKeys,foreignRefKeys);
+
+                            }
+                            isValidQuery = true;
+                        } else {
+                            System.out.println("Invalid query");
+                            isValidQuery = false;
+                        }
 //                    for(String structureValue:structureList){
 //                        structureValue = structureValue.trim();
 //                        System.out.println("structureValue = " + structureValue);
@@ -98,23 +140,80 @@ public class Create {
 //                        }
 //                        else{
 //                            System.out.println("Invalid query");
-//                            result = false;
+//                            isValidQuery = false;
 //                            break;
 //                        }
 //
 //                    }
-                    result = true;
+                    } else {
+                        System.out.println("invalid table query");
+                        isValidQuery = false;
+                    }
                 } else {
-                    System.out.println("invalid table query");
-                    result = false;
+                    isValidQuery = false;
                 }
+            } else {
+                System.out.println("Please set default schema/database first");
+                System.out.println("enter command : \n use <database_name>;");
             }
-        }
-        else{
-            result = false;
-        }
 
-
-        return  result;
+        }
+        return isValidQuery;
     }
+
+    public boolean writeTable(String dbName, String tableName, List<String> tableColumnName) {
+        boolean isWritten = false;
+
+        String fileName = basePath + dbName + filePathSeparator + "" + tableName + ".txt";
+        System.out.println("fileName = " + fileName);
+
+        try {
+            PrintWriter fileWriter = new PrintWriter(new File(fileName), "UTF-8");
+            fileWriter.print(tableColumnName.toString()+delimeter);
+            fileWriter.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return isWritten;
+    }
+
+    public boolean writeStructure(String dbName, String tableName, List<String> tableColumnName, List<String> tableColumnType) {
+        boolean isWritten = false;
+
+        String fileName = basePath + dbName + filePathSeparator + "" + tableName + "@structure.txt";
+        System.out.println("fileName = " + fileName);
+
+        try {
+            PrintWriter fileWriter = new PrintWriter(new File(fileName), "UTF-8");
+            fileWriter.print(tableColumnName.toString()+delimeter+tableColumnType.toString());
+            fileWriter.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return isWritten;
+    }
+
+    public boolean writeKey(String dbName, String tableName, List<String> primaryKeys, List<String> foreignKeys, List<String>
+            foreignRefKeys) {
+        boolean isWritten = false;
+
+        String fileName = basePath + dbName + filePathSeparator + "" + tableName + "@key.txt";
+        System.out.println("fileName = " + fileName);
+
+        try {
+            PrintWriter printWriter = new PrintWriter(new File(fileName), "UTF-8");
+            printWriter.print(primaryKeys.toString()+delimeter+foreignKeys.toString()+delimeter+foreignRefKeys.toString());
+            printWriter.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        return isWritten;
+    }
+
 }
