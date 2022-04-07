@@ -4,11 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3dfc56d1-e93d-4478-a148-70173c758283" name="Changes" comment="User Interface">
-      <change beforePath="$PROJECT_DIR$/User_Profile.txt" beforeDir="false" />
+    <list default="true" id="3295a376-bed5-4dd7-911f-50e1562c76fd" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data_Project.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/UserRegistration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/User_Profile.txt" beforeDir="false" afterPath="$PROJECT_DIR$/User_Profile.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/user.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/userLogin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/userLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UserLogin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/userRegistration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/user.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/userLogin.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/userLogin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/userRegistration.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/userRegistration.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +43,7 @@
     </option>
   </component>
   <component name="ProjectId" id="26TmsmZut0ou3sHnWh67XP7Ovxu" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -41,8 +51,10 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/project/marketplace-backend" />
+    <property name="extract.method.default.visibility" value="private" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -51,7 +63,14 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.UserProfile">
+    <configuration name="UserProfile" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="UserProfile" />
+      <module name="Data_Project" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="user" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="17" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -63,6 +82,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.UserProfile" />
         <item itemvalue="Application.user" />
       </list>
     </recent_temporary>
