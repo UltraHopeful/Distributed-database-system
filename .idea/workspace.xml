@@ -4,20 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3295a376-bed5-4dd7-911f-50e1562c76fd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Data_Project.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/UserRegistration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="3295a376-bed5-4dd7-911f-50e1562c76fd" name="Changes" comment="UI design">
       <change beforePath="$PROJECT_DIR$/User_Profile.txt" beforeDir="false" afterPath="$PROJECT_DIR$/User_Profile.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/user.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/userLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UserLogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/userRegistration.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/user.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/userLogin.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/userLogin.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/userRegistration.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/userRegistration.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +95,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649289933576</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="UI design">
+      <created>1649375012423</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1649375012424</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -126,6 +121,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="User Interface" />
-    <option name="LAST_COMMIT_MESSAGE" value="User Interface" />
+    <MESSAGE value="UI design" />
+    <option name="LAST_COMMIT_MESSAGE" value="UI design" />
   </component>
 </project>
