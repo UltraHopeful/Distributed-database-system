@@ -1,10 +1,18 @@
+import Query.QueryCheck;
+
 import java.util.Scanner;
 
 public class RunDDBMS {
 	static RunDDBMS runDDBMS = new RunDDBMS();
 	static Scanner scanner = new Scanner(System.in);
 
+	static QueryCheck queryParse = new QueryCheck();
+
 	public static void main(String[] args) {
+		userManage();
+	}
+
+	public static void userManage(){
 		try {
 			System.out.println("#### Welcome ####");
 			System.out.println("Choose from one of the operation");
@@ -12,15 +20,15 @@ public class RunDDBMS {
 			System.out.println("2. Registration");
 			String input = scanner.nextLine();
 			switch (input) {
-			case "1":
-				runDDBMS.afterLogin();
-				break;
-			case "2":
-				// registration
-				break;
-			default:
-				// invalid
-				break;
+				case "1":
+					runDDBMS.afterLogin();
+					break;
+				case "2":
+					// registration
+					break;
+				default:
+					// invalid
+					break;
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -37,8 +45,22 @@ public class RunDDBMS {
 		String input = scanner.nextLine();
 		switch (input) {
 		case "1":
-			queryInit(input);
-			break;
+			queryParse.queryFormatPrint();
+			String queryString = scanner.nextLine();
+//			while(true){
+//				if(queryParse.queryCheck(queryString)){
+//					break;
+//				}
+//				else{
+//					System.out.println("Another Try");
+//					queryParse.queryFormatPrint();
+//					queryString = scanner.nextLine();
+//					queryParse.queryCheck(queryString);
+//				}
+//			}
+
+			queryParse.queryCheck(queryString);
+			afterLogin();
 		case "2":
 			// SQL Dump
 			break;
@@ -49,39 +71,10 @@ public class RunDDBMS {
 			// Analytics
 			break;
 		case "5":
-			// Logout
-			break;
+			userManage();
 		default:
 			//invalid
 			break;
 		}
 	}
-
-	public void queryInit(String input) {
-		String[] queryType = input.trim().split(" ");
-		switch (queryType[0]) {
-		case "create":
-			//createParser
-			break;
-		case "update":
-			//updateParser
-			break;
-		case "select":
-			//selectParser
-			break;
-		case "insert":
-			//insertParser
-			break;
-		case "delete":
-			//deleteParser
-			break;
-		case "drop":
-			//dropParser
-			break;
-		default:
-			//invalid
-			break;
-		}
-	}
-	
 }
