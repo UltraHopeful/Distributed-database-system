@@ -6,7 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Data_Project" />
+        <module name="untitled" />
+        <module name="D2_DB_5408_DPG_19" />
       </profile>
     </annotationProcessing>
   </component>
