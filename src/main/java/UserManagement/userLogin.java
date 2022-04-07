@@ -1,3 +1,5 @@
+package UserManagement;
+
 import java.io.*;
 
 public class userLogin {
@@ -14,7 +16,7 @@ public class userLogin {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
 
             String line = bufferedReader.readLine();   //read the text file line by line
-            int flag = 0;  //if 0 after the loop, no user found
+            int flag = 0;  //if 0 after the loop, no UserManagement.user found
             while (line != null) {
                 if (username.contentEquals(line))
                 {

@@ -1,3 +1,8 @@
+package UserManagement;
+
+import UserManagement.userLogin;
+import UserManagement.userRegistration;
+
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -43,9 +48,9 @@ public class user {
                     System.out.println("Terminated!");
                 }
             }
-            else  //user successfully logged in
+            else  //UserManagement.user successfully logged in
             {
-                //Link user to sql processing in a new class
+                //Link UserManagement.user to sql processing in a new class
             }
 
         }
