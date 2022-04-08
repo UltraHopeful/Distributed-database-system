@@ -5,6 +5,7 @@ import Query.GlobalConfig;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -13,12 +14,14 @@ public class Create {
     GlobalConfig globalConfig = new GlobalConfig();
     String basePath = globalConfig.getBasePath();
     String filePathSeparator = globalConfig.getPathSeparator();
-    String delimeter = globalConfig.getDelimeter();
+    String delimiter = globalConfig.getDelimiter();
 
     Common common = new Common();
 
     public boolean check(String queryString) {
         boolean isValidQuery = false;
+
+        queryString = queryString.toLowerCase();
 
         List<String> tableColumnName = new ArrayList<>();
         List<String> tableColumnType = new ArrayList<>();
@@ -45,14 +48,14 @@ public class Create {
         // group 3 - if it's contains (table structure)
         Matcher createParseMatcher = createParsePattern.matcher(queryString);
 
-        if (queryString.toLowerCase().contains("database")) {
+        if (queryString.contains("database")) {
             System.out.println("database detected");
             if (createParseMatcher.find()) {
                 if (createParseMatcher.group("database").isEmpty()) {
                     System.out.println("Invalid query no database name found");
                     isValidQuery = false;
                 } else {
-                    String dbName = createParseMatcher.group("database").toLowerCase();
+                    String dbName = createParseMatcher.group("database");
                     System.out.println("Database Name " + dbName);
                     File folder = new File(basePath + dbName);
                     if (folder.exists()) {
@@ -70,7 +73,7 @@ public class Create {
 //        primaryKey=id
 //        foreigeKey=[salaryId]
 //        foreigeKeyRef=[salary.id]
-        else if (queryString.toLowerCase().contains("table")) {
+        else if (queryString.contains("table")) {
             currentDataBase = globalConfig.getGlobalDatabase();
             System.out.println("table detected");
             System.out.println("currentDataBase = " + currentDataBase);
@@ -81,13 +84,13 @@ public class Create {
                         isValidQuery = false;
                     } else {
                         System.out.println("valid table query");
-                        String tableName = createParseMatcher.group("table").toLowerCase();
+                        String tableName = createParseMatcher.group("table");
                         System.out.println("Table Name " + tableName);
                         if (common.tableCheck(tableName)) {
                             System.out.println(tableName + " table already exists.");
                             isValidQuery = false;
                         } else {
-                            String structure = createParseMatcher.group("structure").toLowerCase();
+                            String structure = createParseMatcher.group("structure");
                             structure = structure.trim();
                             structure = structure.substring(1, structure.length() - 1);
                             System.out.println("structure = " + structure);
@@ -161,19 +164,18 @@ public class Create {
                 FileWriter fileWriter = new FileWriter(file, true);
                 BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
                 PrintWriter printWriter = new PrintWriter(bufferedWriter);
-                printWriter.print(delimeter + tableName);
+                printWriter.print(delimiter + tableName);
                 printWriter.close();
                 bufferedWriter.close();
                 fileWriter.close();
-                isWritten = true;
             }
             // create new file
             else {
                 PrintWriter printWriter = new PrintWriter(file);
                 printWriter.print(tableName);
                 printWriter.close();
-                isWritten = true;
             }
+            isWritten = true;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -189,7 +191,7 @@ public class Create {
 
         try {
             PrintWriter fileWriter = new PrintWriter(new File(fileName), "UTF-8");
-            fileWriter.print(tableColumnName.toString() + delimeter);
+            fileWriter.print(tableColumnName.toString() + delimiter);
             fileWriter.close();
             isWritten = true;
         } catch (Exception e) {
@@ -208,7 +210,7 @@ public class Create {
 
         try {
             PrintWriter fileWriter = new PrintWriter(new File(fileName), "UTF-8");
-            fileWriter.print(tableColumnName.toString() + delimeter + tableColumnType.toString());
+            fileWriter.print(tableColumnName.toString() + delimiter + tableColumnType.toString());
             fileWriter.close();
             isWritten = true;
         } catch (Exception e) {
@@ -228,7 +230,7 @@ public class Create {
 
         try {
             PrintWriter fileWriter = new PrintWriter(new File(fileName), "UTF-8");
-            fileWriter.print(primaryKeys.toString() + delimeter + foreignKeys.toString() + delimeter + foreignRefKeys.toString());
+            fileWriter.print(primaryKeys.toString() + delimiter + foreignKeys.toString() + delimiter + foreignRefKeys.toString());
             fileWriter.close();
             isWritten = true;
         } catch (FileNotFoundException e) {

@@ -10,7 +10,7 @@ public class DataModelRun {
     GlobalConfig globalConfig = new GlobalConfig();
     String basePath = globalConfig.getBasePath();
     String filePathSeparator = globalConfig.getPathSeparator();
-    String delimeter = globalConfig.getDelimeter();
+    String delimiter = globalConfig.getDelimiter();
 
     public void generateERD(String dbName) {
 
@@ -25,7 +25,7 @@ public class DataModelRun {
                 BufferedReader bufferedReader = new BufferedReader(fileReader);
                 String tables = bufferedReader.readLine();
 
-                String[] tableList = tables.split(delimeter);
+                String[] tableList = tables.split(delimiter);
                 bufferedReader.close();
                 fileReader.close();
 
@@ -43,7 +43,7 @@ public class DataModelRun {
                     bufferedReader = new BufferedReader(fileReader);
                     String columns = bufferedReader.readLine();
 
-                    String[] columnList = columns.split(delimeter);
+                    String[] columnList = columns.split(delimiter);
                     String columnNames = columnList[0].substring(1, columnList[0].length() - 1);
                     String columnTypes = columnList[1].substring(1, columnList[1].length() - 1);
                     String[] columnNamesList = columnNames.split(",");
@@ -64,7 +64,7 @@ public class DataModelRun {
                     String keyName = bufferedReader.readLine();
 
                     if (keyName.length() > 1) {
-                        String[] keynames = keyName.split(delimeter);
+                        String[] keynames = keyName.split(delimiter);
                         printWriter.println("");
                         printWriter.println("######KEY######\n");
                         String primaryKey1 = keynames[0].substring(1, keynames[0].length() - 1);
@@ -79,7 +79,6 @@ public class DataModelRun {
                             }
 
                         }
-
                     }
                     printWriter.println("\n####################################################");
                 }

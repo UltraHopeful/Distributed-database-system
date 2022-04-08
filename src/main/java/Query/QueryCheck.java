@@ -1,11 +1,13 @@
 package Query;
 import Query.Process.Create;
+import Query.Process.Insert;
 import Query.Process.Use;
 
 public class QueryCheck {
 
     Create parseCreate = new Create();
-    Use parserUse = new Use();
+    Use parseUse = new Use();
+    Insert parseInsert = new Insert();
 
     public void queryFormatPrint() {
         System.out.println("create database <database_name>;");
@@ -28,7 +30,7 @@ public class QueryCheck {
             }
         }
         else if(queryString.toLowerCase().startsWith("use")){
-            if(parserUse.check(queryString)){
+            if(parseUse.check(queryString)){
                 System.out.println("Parse success use query");
                 isQueryValid = true;
             }
@@ -37,7 +39,7 @@ public class QueryCheck {
             }
         }
         else if(queryString.toLowerCase().startsWith("insert")){
-            if(parserUse.check(queryString)){
+            if(parseInsert.check(queryString)){
                 System.out.println("Parse success insert query");
                 isQueryValid = true;
             }

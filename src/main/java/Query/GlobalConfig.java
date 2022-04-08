@@ -8,9 +8,9 @@ public class GlobalConfig {
 
     private static String pathSeparator = File.separator;
 
-    private static String delimeter = "\u2088";
+    private static String delimiter = "\u2088";
 
-    private static String rowDelimeter = "\u2087";
+    private static String rowDelimiter = "\u2087";
     private static String basePath ="system"+pathSeparator+"";
 
     public GlobalConfig() {
@@ -37,11 +37,11 @@ public class GlobalConfig {
         return pathSeparator;
     }
 
-    public String getDelimeter() {
-        return delimeter;
+    public String getDelimiter() {
+        return delimiter;
     }
 
-    public static String getRowDelimeter() {
-        return rowDelimeter;
+    public String getRowDelimiter() {
+        return rowDelimiter;
     }
 }
