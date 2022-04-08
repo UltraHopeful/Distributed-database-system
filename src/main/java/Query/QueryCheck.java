@@ -1,6 +1,6 @@
 package Query;
-import Query.Parser.Create;
-import Query.Parser.Use;
+import Query.Process.Create;
+import Query.Process.Use;
 
 public class QueryCheck {
 
@@ -15,7 +15,9 @@ public class QueryCheck {
     public boolean queryCheck(String queryString){
         boolean isQueryValid = false;
 
-        if(queryString.toLowerCase().contains("create")){
+        queryString = queryString.trim();
+
+        if(queryString.toLowerCase().startsWith("create")){
             if(parseCreate.check(queryString))
             {
                 System.out.println("Parse success create query");
@@ -25,7 +27,7 @@ public class QueryCheck {
                 System.out.println("Parse error in create query");
             }
         }
-        else if(queryString.toLowerCase().contains("use")){
+        else if(queryString.toLowerCase().startsWith("use")){
             if(parserUse.check(queryString)){
                 System.out.println("Parse success use query");
                 isQueryValid = true;
@@ -33,6 +35,48 @@ public class QueryCheck {
             else{
                 System.out.println("Parse error in use query");
             }
+        }
+        else if(queryString.toLowerCase().startsWith("insert")){
+            if(parserUse.check(queryString)){
+                System.out.println("Parse success insert query");
+                isQueryValid = true;
+            }
+            else{
+                System.out.println("Parse error in insert query");
+            }
+        }
+        else if(queryString.toLowerCase().startsWith("select")){
+            System.out.println("Select query");
+//            if(parserUse.check(queryString)){
+//                System.out.println("Parse success select query");
+//                isQueryValid = true;
+//            }
+//            else{
+//                System.out.println("Parse error in select query");
+//            }
+        }
+        else if(queryString.toLowerCase().startsWith("update")){
+            System.out.println("update query");
+//            if(parserUse.check(queryString)){
+//                System.out.println("Parse success update query");
+//                isQueryValid = true;
+//            }
+//            else{
+//                System.out.println("Parse error in update query");
+//            }
+        }
+        else if(queryString.toLowerCase().startsWith("delete")){
+            System.out.println("delete query");
+//            if(parserUse.check(queryString)){
+//                System.out.println("Parse success delete query");
+//                isQueryValid = true;
+//            }
+//            else{
+//                System.out.println("Parse error in delete query");
+//            }
+        }
+        else{
+            System.out.println("Invalid query type");
         }
 
 

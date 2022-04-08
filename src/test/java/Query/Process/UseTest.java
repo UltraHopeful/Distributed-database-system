@@ -1,4 +1,4 @@
-package Query.Parser;
+package Query.Process;
 
 import Query.QueryCheck;
 import org.junit.jupiter.api.Test;
