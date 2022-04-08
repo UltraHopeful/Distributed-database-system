@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3295a376-bed5-4dd7-911f-50e1562c76fd" name="Changes" comment="class files">
+    <list default="true" id="3295a376-bed5-4dd7-911f-50e1562c76fd" name="Changes" comment="Delimiter update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/User_Profile.txt" beforeDir="false" afterPath="$PROJECT_DIR$/User_Profile.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/UserManagement/UserRegistration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UserManagement/UserRegistration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/RunDDBMS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/RunDDBMS.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +123,28 @@
       <option name="project" value="LOCAL" />
       <updated>1649375012424</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Delimiter update">
+      <created>1649442714653</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1649442714653</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Delimiter update">
+      <created>1649442747548</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1649442747548</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Delimiter update">
+      <created>1649442859283</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1649442859283</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -144,6 +164,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="User Interface" />
     <MESSAGE value="UI design" />
-    <option name="LAST_COMMIT_MESSAGE" value="UI design" />
+    <MESSAGE value="Delimiter update" />
+    <option name="LAST_COMMIT_MESSAGE" value="Delimiter update" />
   </component>
 </project>
