@@ -1,6 +1,6 @@
 package UserManagement;
 
-import UserManagement.Hashing;
+import Query.GlobalConfig;
 
 import java.io.IOException;
 import java.io.FileWriter;
@@ -10,8 +10,10 @@ import java.util.Scanner;
 
 public class UserRegistration
 {
+    static GlobalConfig globalConfig = new GlobalConfig();
     static Scanner sc = new Scanner(System.in);
     static boolean userExists;
+    static String delimiter = globalConfig.getDelimeter();
 
     public static void registerUser() throws IOException {
 
@@ -31,7 +33,7 @@ public class UserRegistration
                 System.out.print("Please enter answer to your security question: ");
                 String securityAnswer = sc.nextLine();
                 FileWriter writer = new FileWriter(System.getProperty("user.dir") + "/User_Profile.txt", true);
-                writer.write(hashedUserID + "|" + hashedPassword + "|" + securityQuestion + "|" + securityAnswer + "\n");
+                writer.write(hashedUserID + delimiter + hashedPassword + delimiter + securityQuestion + delimiter + securityAnswer + "\n");
                 writer.close();
                 System.out.println("User registered successfully.");
                 System.out.println();
