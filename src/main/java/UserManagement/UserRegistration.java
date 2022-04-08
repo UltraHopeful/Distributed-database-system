@@ -1,3 +1,7 @@
+package UserManagement;
+
+import UserManagement.Hashing;
+
 import java.io.IOException;
 import java.io.FileWriter;
 import java.io.BufferedReader;

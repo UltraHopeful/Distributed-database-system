@@ -4,8 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3295a376-bed5-4dd7-911f-50e1562c76fd" name="Changes" comment="UI design">
-      <change beforePath="$PROJECT_DIR$/User_Profile.txt" beforeDir="false" afterPath="$PROJECT_DIR$/User_Profile.txt" afterDir="false" />
+    <list default="true" id="3295a376-bed5-4dd7-911f-50e1562c76fd" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Hashing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UserManagement/Hashing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/RunDDBMS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/RunDDBMS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/UserLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UserManagement/UserLogin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/UserManagement/user.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/UserManagement/userLogin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/UserManagement/userRegistration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/UserProfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UserManagement/UserProfile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/UserRegistration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UserManagement/UserRegistration.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +62,7 @@
   </component>
   <component name="RunManager" selected="Application.UserProfile">
     <configuration name="UserProfile" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="UserProfile" />
+      <option name="MAIN_CLASS_NAME" value="UserManagement.UserProfile" />
       <module name="Data_Project" />
       <method v="2">
         <option name="Make" enabled="true" />
