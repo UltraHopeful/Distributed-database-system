@@ -1,3 +1,4 @@
+import DataModel.DataModelRun;
 import Query.QueryCheck;
 
 import java.util.Scanner;
@@ -7,9 +8,10 @@ public class RunDDBMS {
 	static Scanner scanner = new Scanner(System.in);
 
 	static QueryCheck queryParse = new QueryCheck();
-
+	static DataModelRun dataModelRun = new DataModelRun();
 	public static void main(String[] args) {
 		userManage();
+
 	}
 
 	public static void userManage(){
@@ -65,7 +67,8 @@ public class RunDDBMS {
 			// SQL Dump
 			break;
 		case "3":
-			// Data Model
+			String erdString = scanner.nextLine();
+			dataModelRun.generateERD(erdString);
 			break;
 		case "4":
 			// Analytics
