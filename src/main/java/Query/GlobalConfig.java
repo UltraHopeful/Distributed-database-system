@@ -1,0 +1,47 @@
+package Query;
+
+import java.io.File;
+
+public class GlobalConfig {
+
+    private static String globalDatabase;
+
+    private static String pathSeparator = File.separator;
+
+    private static String delimeter = "\u2088";
+
+    private static String rowDelimeter = "\u2087";
+    private static String basePath ="system"+pathSeparator+"";
+
+    public GlobalConfig() {
+    }
+
+    public GlobalConfig(String globalDatabase, String basePath) {
+        this.globalDatabase = globalDatabase;
+        this.basePath = basePath;
+    }
+
+    public String getGlobalDatabase() {
+        return globalDatabase;
+    }
+
+    public void setGlobalDatabase(String globalDatabase) {
+        this.globalDatabase = globalDatabase;
+    }
+
+    public String getBasePath() {
+        return basePath;
+    }
+
+    public String getPathSeparator() {
+        return pathSeparator;
+    }
+
+    public String getDelimeter() {
+        return delimeter;
+    }
+
+    public static String getRowDelimeter() {
+        return rowDelimeter;
+    }
+}
