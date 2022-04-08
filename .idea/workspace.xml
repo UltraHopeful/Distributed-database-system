@@ -65,7 +65,14 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
-  <component name="RunManager" selected="Application.UserProfile">
+  <component name="RunManager" selected="Application.RunDDBMS">
+    <configuration name="RunDDBMS" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="RunDDBMS" />
+      <module name="Data_Project" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="UserProfile" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="UserManagement.UserProfile" />
       <module name="Data_Project" />
@@ -84,6 +91,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.RunDDBMS" />
         <item itemvalue="Application.UserProfile" />
         <item itemvalue="Application.user" />
       </list>
