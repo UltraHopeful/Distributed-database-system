@@ -1,8 +1,5 @@
 import Query.QueryCheck;
-import UserManagement.UserLogin;
-import UserManagement.UserRegistration;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class RunDDBMS {
@@ -10,57 +7,47 @@ public class RunDDBMS {
 	static Scanner scanner = new Scanner(System.in);
 
 	static QueryCheck queryParse = new QueryCheck();
-
-	public static void main(String[] args) throws IOException {
+	static DataModelRun dataModelRun = new DataModelRun();
+	public static void main(String[] args) {
 		userManage();
 	}
 
-	public static void userManage() throws IOException {
-		System.out.println("Please select one of the options below:");
-		System.out.println("1. LOGIN USER");
-		System.out.println("2. REGISTER NEW USER");
-		System.out.println("3. EXIT");
-		Scanner sc = new Scanner(System.in);
-		int option = sc.nextInt();
-
-		switch (option) {
-			case 1 -> {
-				operationMenu(UserLogin.loginUser());
-				break;
+	public static void userManage(){
+		try {
+			System.out.println("#### Welcome ####");
+			System.out.println("Choose from one of the operation");
+			System.out.println("1. Login");
+			System.out.println("2. Registration");
+			String input = scanner.nextLine();
+			switch (input) {
+				case "1":
+					runDDBMS.afterLogin();
+					break;
+				case "2":
+					// registration
+					break;
+				default:
+					// invalid
+					break;
 			}
-			case 2 -> {
-				UserRegistration.registerUser();
-				userManage();
-				break;
-			}
-			case 3 -> {
-				System.out.println("Exiting the application...");
-				System.exit(0);
-			}
-			default -> {
-				System.out.println("You entered an invalid input.");
-				userManage();
-			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
-	public static void operationMenu(String username) throws IOException {
-
-		System.out.println("\nPlease choose one of the following options:");
-		System.out.println("1. WRITE QUERIES");
-		System.out.println("2. EXPORT");
-		System.out.println("3. DATA MODEL");
-		System.out.println("4. ANALYTICS");
-		System.out.println("5. LOGOUT");
-		Scanner scanner1 = new Scanner(System.in);
-		int option = scanner1.nextInt();
-
-		switch (option)
-		{
-			case 1: {
-				queryParse.queryFormatPrint();
-				String queryString = scanner.nextLine();
-				while (true) {
+	public void afterLogin() {
+		System.out.println("1. Write Query");
+		System.out.println("2. Export SQL Dump");
+		System.out.println("3. Generate Data Model");
+		System.out.println("4. Analytics");
+		System.out.println("5. Logout");
+		String input = scanner.nextLine();
+		switch (input) {
+		case "1":
+			queryParse.queryFormatPrint();
+			String queryString = scanner.nextLine();
+//			while(true){
 //				if(queryParse.queryCheck(queryString)){
 //					break;
 //				}
@@ -86,6 +73,8 @@ public class RunDDBMS {
 
 				case 3:
 				{
+					String erdString = scanner.nextLine();
+					dataModelRun.generateERD(erdString);
 					// Data Model
 					break;
 				}
