@@ -4,17 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3295a376-bed5-4dd7-911f-50e1562c76fd" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+    <list default="true" id="3295a376-bed5-4dd7-911f-50e1562c76fd" name="Changes" comment="class files">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Hashing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UserManagement/Hashing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/RunDDBMS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/RunDDBMS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/UserLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UserManagement/UserLogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/UserManagement/user.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/UserManagement/userLogin.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/UserManagement/userRegistration.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/UserProfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UserManagement/UserProfile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/UserRegistration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UserManagement/UserRegistration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/User_Profile.txt" beforeDir="false" afterPath="$PROJECT_DIR$/User_Profile.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/UserManagement/UserRegistration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UserManagement/UserRegistration.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +21,18 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/java/Query/Parser/Create.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/UserManagement/UserLogin.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/Query/GlobalConfig.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/Query/Process/Insert.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/UserManagement/UserProfile.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/UserManagement/Hashing.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/RunDDBMS.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/Query/Parser/Insert.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/Query/Parser/Select.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/Query/Process/Create.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
