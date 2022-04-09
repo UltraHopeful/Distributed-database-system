@@ -4,13 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3295a376-bed5-4dd7-911f-50e1562c76fd" name="Changes" comment="Delimiter update">
+    <list default="true" id="3295a376-bed5-4dd7-911f-50e1562c76fd" name="Changes" comment="Export Data">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ExportData/ExportDataRun.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ExportData/ExportDataRun.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Query/GlobalConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Query/GlobalConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/system/trial1/todo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/system/trial1/todo.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/DataModel/DataModelRun.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DataModel/DataModelRun.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/RunDDBMS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/RunDDBMS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ExportData/ExportDataRun.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ExportData/ExportDataRun.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/RunDDBMS.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/RunDDBMS.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/query/GlobalConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/query/GlobalConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/query/parser/Create.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/query/parser/Create.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/query/parser/Use.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/query/parser/Use.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +70,7 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
-  <component name="RunManager" selected="Application.ExportDataRun">
+  <component name="RunManager" selected="Application.RunDDBMS">
     <configuration name="ExportDataRun" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ExportData.ExportDataRun" />
       <module name="Data_Project" />
@@ -107,8 +109,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ExportDataRun" />
         <item itemvalue="Application.RunDDBMS" />
+        <item itemvalue="Application.ExportDataRun" />
         <item itemvalue="Application.UserProfile" />
         <item itemvalue="Application.user" />
       </list>
@@ -117,7 +119,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="3dfc56d1-e93d-4478-a148-70173c758283" name="Changes" comment="" />
+      <changelist id="3295a376-bed5-4dd7-911f-50e1562c76fd" name="Changes" comment="Export Data" />
       <created>1647456163504</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -126,6 +128,9 @@
       <workItem from="1647477743961" duration="99000" />
       <workItem from="1647986889685" duration="1253000" />
       <workItem from="1649283217826" duration="4567000" />
+      <workItem from="1649477964366" duration="1374000" />
+      <workItem from="1649511793973" duration="4254000" />
+      <workItem from="1649519919718" duration="318000" />
     </task>
     <task id="LOCAL-00001" summary="User Interface">
       <created>1649289933576</created>
@@ -162,7 +167,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649442859283</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Export Data">
+      <created>1649475549153</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1649475549153</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -183,6 +195,7 @@
     <MESSAGE value="User Interface" />
     <MESSAGE value="UI design" />
     <MESSAGE value="Delimiter update" />
-    <option name="LAST_COMMIT_MESSAGE" value="Delimiter update" />
+    <MESSAGE value="Export Data" />
+    <option name="LAST_COMMIT_MESSAGE" value="Export Data" />
   </component>
 </project>

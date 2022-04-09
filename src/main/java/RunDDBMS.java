@@ -1,4 +1,5 @@
 import DataModel.DataModelRun;
+import ExportData.ExportDataRun;
 import Query.QueryCheck;
 import UserManagement.UserLogin;
 import UserManagement.UserRegistration;
@@ -26,7 +27,8 @@ public class RunDDBMS {
 
 		switch (option) {
 			case 1 -> {
-				operationMenu(UserLogin.loginUser());
+				String userName = UserLogin.loginUser();
+				operationMenu(userName);
 				break;
 			}
 			case 2 -> {
@@ -45,8 +47,7 @@ public class RunDDBMS {
 		}
 	}
 
-	public static void operationMenu(String username)
-	{
+	public static void operationMenu(String username) throws IOException {
 		System.out.println("\nPlease choose one of the following options:");
 		System.out.println("1. WRITE QUERIES");
 		System.out.println("2. EXPORT");
@@ -80,7 +81,9 @@ public class RunDDBMS {
 
 			case 2:
 			{
-
+				System.out.println("Enter a Database you want to Export");
+				String dbName = scanner.nextLine();
+				ExportDataRun.createDB(dbName);
 			}
 
 			case 3:
