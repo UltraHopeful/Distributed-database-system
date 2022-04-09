@@ -3,18 +3,30 @@ package Query.Process;
 import Query.GlobalConfig;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class Common {
 
-    GlobalConfig globalConfig = new GlobalConfig();
-    String basePath = globalConfig.getBasePath();
-    String filePathSeparator = globalConfig.getPathSeparator();
-    String delimiter = globalConfig.getDelimiter();
-    String rowDelimiter = globalConfig.getRowDelimiter();
+    private GlobalConfig globalConfig = new GlobalConfig();
+    private String basePath = globalConfig.getBasePath();
+    private String filePathSeparator = globalConfig.getPathSeparator();
+    private String delimiter = globalConfig.getDelimiter();
+    private String rowDelimiter = globalConfig.getRowDelimiter();
 
+    public boolean databaseCheck(String databaseName) {
+        boolean isDatabaseExists = false;
+
+        String currentDataBase = globalConfig.getGlobalDatabase();
+        File database = new File(basePath + databaseName);
+        if (database.exists()) {
+            isDatabaseExists = true;
+        }
+
+        return isDatabaseExists;
+    }
 
     public boolean tableCheck(String tableName) {
         boolean isTableExists = false;
@@ -75,8 +87,11 @@ public class Common {
 
             String[] columnsString = columns.split(delimiter);
             String columnNames = columnsString[0].substring(1, columnsString[0].length() - 1);
-            columnList = Arrays.asList(columnNames.split(","));
-
+            String[] columnListArray = columnNames.split(",");
+            for(String columnName : columnListArray){
+                columnList.add(columnName.trim());
+            }
+            System.out.println("columnList = " + columnList);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException IoE) {
@@ -103,14 +118,14 @@ public class Common {
 
             List<String> rowValues = new ArrayList<>();
 
-            for(String row:rowValuesArray){
+            for (String row : rowValuesArray) {
                 rowValues.add(row);
             }
 
             rowValues.remove(0);
 
-            for(String row:rowValues){
-                row = row.substring(1,row.length()-1);
+            for (String row : rowValues) {
+                row = row.substring(1, row.length() - 1);
                 rowData.add(row.split(rowDelimiter));
             }
 
@@ -124,21 +139,115 @@ public class Common {
 
     }
 
-    public List<Integer> getSelectedRows(String tableName,int indexToFind,String conditionValue){
+    public List<Integer> getSelectedRows(String tableName, int indexToFind, String condition, String conditionValue) {
         List<Integer> rowIndex = new ArrayList<>();
 
         List<String[]> rowData = getData(tableName);
 
-        for(int i=0;i<rowData.size();i++){
+        List<String[]> columnStructure = getStructure(tableName);
+
+        String[] columnTypeList = columnStructure.get(1);
+        for (int i = 0; i < rowData.size(); i++) {
             String[] rowValue = rowData.get(i);
-            for(int j=0;j<rowValue.length;j++){
-                if(indexToFind == j && rowValue[j].equals(conditionValue)){
-                    rowIndex.add(i);
+            for (int j = 0; j < rowValue.length; j++) {
+                if (indexToFind == j) {
+//                    System.out.println("datatype matching....");
+                    if (columnTypeList[j].trim().equals("int")) {
+                        //System.out.println("int data type");
+                        int dataValue = Integer.parseInt(rowValue[j]);
+                        int conditionValueInt = Integer.parseInt(conditionValue);
+                        if (condition.equals("==")) {
+                            if (dataValue == conditionValueInt) {
+                                rowIndex.add(i);
+                            }
+                        } else if (condition.equals("!=")) {
+                            if (dataValue != conditionValueInt) {
+                                rowIndex.add(i);
+                            }
+                        } else if (condition.equals("<")) {
+                            if (dataValue < conditionValueInt) {
+                                rowIndex.add(i);
+                            }
+                        } else if (condition.equals(">")) {
+                            if (dataValue > conditionValueInt) {
+                                rowIndex.add(i);
+                            }
+                        } else if (condition.equals("<=")) {
+                            if (dataValue <= conditionValueInt) {
+                                rowIndex.add(i);
+                            }
+                        } else if (condition.equals(">=")) {
+                            if (dataValue >= conditionValueInt) {
+                                rowIndex.add(i);
+                            }
+                        } else {
+                            rowIndex = null;
+                            //System.out.println("Invalid condition operator for int datatype");
+                        }
+                    } else if (columnTypeList[j].trim().equals("varchar") || columnTypeList[j].trim().equals("text")) {
+                        //System.out.println("varchar or text data type");
+                        if (condition.equals("==")) {
+                            if (rowValue[j].equals(conditionValue)) {
+                                rowIndex.add(i);
+                            }
+                        } else {
+                            rowIndex = null;
+                            //System.out.println("Invalid condition operator for varchar or text datatype");
+                            break;
+                        }
+                    } else if (columnTypeList[j].trim().equals("boolean")) {
+                        //System.out.println("boolean data type");
+                        if (condition.equals("==")) {
+                            if (rowValue[j].equals(conditionValue)) {
+                                rowIndex.add(i);
+                            }
+                        } else {
+                            rowIndex = null;
+                            //System.out.println("Invalid condition operator for data type boolean");
+                            break;
+                        }
+                    }
                 }
             }
         }
 
         return rowIndex;
+    }
+
+    public int updateDataRow(String tableName,String[] oldRowArray,String[] updateRowArray){
+        int updateCount = 0;
+
+        String currentDataBase = globalConfig.getGlobalDatabase();
+        String dataFile = basePath + currentDataBase + filePathSeparator + tableName + ".txt";
+
+        String oldRow = "["+String.join(rowDelimiter,oldRowArray)+"]";
+        System.out.println("oldRow = " + oldRow);
+        String updateRow = "["+String.join(rowDelimiter,updateRowArray)+"]";
+        System.out.println("updateRow = " + updateRow);
+
+        FileReader fileReader = null;
+        try {
+            fileReader = new FileReader(dataFile);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            String data = bufferedReader.readLine();
+
+            data = data.replace(oldRow,updateRow);
+            System.out.println("data = " + data);
+
+            bufferedReader.close();
+            fileReader.close();
+
+            PrintWriter printWriter = new PrintWriter(new File(dataFile), StandardCharsets.UTF_8);
+            printWriter.print(data);
+            printWriter.close();
+            updateCount = 1;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException IoE){
+            IoE.printStackTrace();
+        }
+
+        return updateCount;
     }
 
     public int getPrimaryIndex(String tableName) {
@@ -250,11 +359,11 @@ public class Common {
 
             String primaryKeyValues = bufferedReader.readLine();
             String[] primaryKeys = primaryKeyValues.split(delimiter);
-            System.out.println("primaryKeys.length = " + primaryKeys.length);
-            for(int i=1;i<primaryKeys.length;i++){
-                System.out.println("primaryKeys[i] = " + primaryKeys[i]);
+            //System.out.println("primaryKeys.length = " + primaryKeys.length);
+            for (int i = 1; i < primaryKeys.length; i++) {
+                //System.out.println("primaryKeys[i] = " + primaryKeys[i]);
                 String rowValuesString = primaryKeys[i];
-                rowValuesString = rowValuesString.substring(1,rowValuesString.length()-1);
+                rowValuesString = rowValuesString.substring(1, rowValuesString.length() - 1);
                 String[] rowValues = rowValuesString.split(rowDelimiter);
                 primaryKeyList.add(rowValues[0]);
             }

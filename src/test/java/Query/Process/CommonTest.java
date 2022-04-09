@@ -33,8 +33,8 @@ public class CommonTest {
             System.out.println("Arrays.toString(row).toString() = " + Arrays.toString(row).toString());
         }
 
-        System.out.println("common.getSelectedRows(tableName,1,\"homework\") = " + common.getSelectedRows(tableName,1,"homework"));
-        System.out.println("common.getSelectedRows(tableName,1,\"homework\") = " + common.getSelectedRows(tableName,1,"make dinner"));
+        System.out.println("common.getSelectedRows(tableName,1,>,\"homework\") = " + common.getSelectedRows(tableName,0,">","4"));
+        System.out.println("common.getSelectedRows(tableName,1,>=,\"homework\") = " + common.getSelectedRows(tableName,0,"<","3"));
     }
     
 

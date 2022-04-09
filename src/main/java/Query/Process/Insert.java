@@ -6,6 +6,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.util.Arrays;
 import java.util.List;
@@ -16,12 +17,12 @@ import java.util.regex.Pattern;
 
 public class Insert {
 
-    Common common = new Common();
-    GlobalConfig globalConfig = new GlobalConfig();
-    String basePath = globalConfig.getBasePath();
-    String filePathSeparator = globalConfig.getPathSeparator();
-    String delimiter = globalConfig.getDelimiter();
-    String rowDelimiter = globalConfig.getRowDelimiter();
+    private Common common = new Common();
+    private GlobalConfig globalConfig = new GlobalConfig();
+    private String basePath = globalConfig.getBasePath();
+    private String filePathSeparator = globalConfig.getPathSeparator();
+    private String delimiter = globalConfig.getDelimiter();
+    private String rowDelimiter = globalConfig.getRowDelimiter();
 
     public boolean check(String queryString) {
         boolean isValidQuery = false;
@@ -166,7 +167,7 @@ public class Insert {
             }
             // create new file
             else {
-                PrintWriter printWriter = new PrintWriter(file);
+                PrintWriter printWriter = new PrintWriter(file, StandardCharsets.UTF_8);
                 printWriter.print(tableName);
                 printWriter.close();
             }

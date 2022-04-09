@@ -1,13 +1,15 @@
 package Query;
 import Query.Process.Create;
 import Query.Process.Insert;
+import Query.Process.Update;
 import Query.Process.Use;
 
 public class QueryCheck {
 
-    Create parseCreate = new Create();
-    Use parseUse = new Use();
-    Insert parseInsert = new Insert();
+    private Create parseCreate = new Create();
+    private Use parseUse = new Use();
+    private Insert parseInsert = new Insert();
+    private Update parseUpdate = new Update();
 
     public void queryFormatPrint() {
         System.out.println("create database <database_name>;");
@@ -59,13 +61,13 @@ public class QueryCheck {
         }
         else if(queryString.toLowerCase().startsWith("update")){
             System.out.println("update query");
-//            if(parserUse.check(queryString)){
-//                System.out.println("Parse success update query");
-//                isQueryValid = true;
-//            }
-//            else{
-//                System.out.println("Parse error in update query");
-//            }
+            if(parseUpdate.check(queryString)){
+                System.out.println("Parse success update query");
+                isQueryValid = true;
+            }
+            else{
+                System.out.println("Parse error in update query");
+            }
         }
         else if(queryString.toLowerCase().startsWith("delete")){
             System.out.println("delete query");

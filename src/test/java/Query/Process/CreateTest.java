@@ -7,22 +7,21 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CreateTest {
 
-    QueryCheck queryParse = new QueryCheck();
+    private QueryCheck queryParse = new QueryCheck();
 
-    String createValidDB1 = "CREATE DATABASE IF NOT EXISTS Trial1;";
-    String createValidDB2 = "CREATE DATABASE trial1;";
-    String createInvalidDB1 = "CREATE DATABASE IF NOT EXISTS Trial1 trial2;";
-    String createInvalidDB2 = "CREATE DATABASE trial1 trial2;";
-    String createInvalidDB3 = "CREATE DATABASE  ;";
+    private String createValidDB1 = "CREATE DATABASE IF NOT EXISTS Trial1;";
+    private String createValidDB2 = "CREATE DATABASE trial1;";
+    private String createInvalidDB1 = "CREATE DATABASE IF NOT EXISTS Trial1 trial2;";
+    private String createInvalidDB2 = "CREATE DATABASE trial1 trial2;";
+    private String createInvalidDB3 = "CREATE DATABASE  ;";
 
-
-    String createValidTable1 = "CREATE TABLE todo2  ( todo_id INT, todo VARCHAR, is_completed BOOLEAN, PRIMARY KEY (todo_id), FOREIGN KEY (task_id) REFERENCES tasks (task_id) ) ;";
-    String createValidTable2 = "CREATE TABLE IF NOT EXISTS todo1  ( todo_id INT, todo VARCHAR, is_completed BOOLEAN, PRIMARY KEY (todo_id), FOREIGN KEY (task_id) REFERENCES tasks (task_id), FOREIGN KEY (task_id) REFERENCES tasks (task_id)) ;";
-    String createInvalidTable5 = "CREATE TABLE todo  ( todo_id INT, todo VARCHAR, is_completed BOOLEAN, PRIMARY KEY (todo_id), FOREIGN KEY (task_id) REFERENCES tasks (task_id) ) ;";
-    String createInvalidTable1 = "CREATE TABLE todo3  (( todo_id INT, todo VARCHAR, is_completed BOOLEAN, PRIMARY KEY todo_id, FOREIGN KEY (task_id) REFERENCES tasks (task_id) ) ;";
-    String createInvalidTable2 = "CREATE TABLE tod  ( todo_id INT, todo VARCHAR, is_completed FLOAT, PRIMARY KEY todo_id, FOREIGN KEY (task_id) REFERENCES tasks (task_id) );";
-    String createInvalidTable3 = "CREATE TABLE tod  ( todo_id INT, todo VARCHAR, is_completed BOOLEAN, PRIMARY KEY todo_id, FOREIGN KEY (task_id) REFERENCES tasks (task_id) ) ";
-    String createInvalidTable4 = "CREATE TABLE  (( todo_id INT, todo VARCHAR, is_completed BOOLEAN, PRIMARY KEY todo_id, FOREIGN KEY (task_id) REFERENCES tasks (task_id) ) ";
+    private String createValidTable1 = "CREATE TABLE todo2  ( todo_id INT, todo VARCHAR, is_completed BOOLEAN, PRIMARY KEY (todo_id), FOREIGN KEY (task_id) REFERENCES tasks (task_id) ) ;";
+    private String createValidTable2 = "CREATE TABLE IF NOT EXISTS todo1  ( todo_id INT, todo VARCHAR, is_completed BOOLEAN, PRIMARY KEY (todo_id), FOREIGN KEY (task_id) REFERENCES tasks (task_id), FOREIGN KEY (task_id) REFERENCES tasks (task_id)) ;";
+    private String createInvalidTable5 = "CREATE TABLE todo  ( todo_id INT, todo VARCHAR, is_completed BOOLEAN, PRIMARY KEY (todo_id), FOREIGN KEY (task_id) REFERENCES tasks (task_id) ) ;";
+    private String createInvalidTable1 = "CREATE TABLE todo3  (( todo_id INT, todo VARCHAR, is_completed BOOLEAN, PRIMARY KEY todo_id, FOREIGN KEY (task_id) REFERENCES tasks (task_id) ) ;";
+    private String createInvalidTable2 = "CREATE TABLE tod  ( todo_id INT, todo VARCHAR, is_completed FLOAT, PRIMARY KEY todo_id, FOREIGN KEY (task_id) REFERENCES tasks (task_id) );";
+    private String createInvalidTable3 = "CREATE TABLE tod  ( todo_id INT, todo VARCHAR, is_completed BOOLEAN, PRIMARY KEY todo_id, FOREIGN KEY (task_id) REFERENCES tasks (task_id) ) ";
+    private String createInvalidTable4 = "CREATE TABLE  (( todo_id INT, todo VARCHAR, is_completed BOOLEAN, PRIMARY KEY todo_id, FOREIGN KEY (task_id) REFERENCES tasks (task_id) ) ";
 
     @Test
     public void createDBTest(){

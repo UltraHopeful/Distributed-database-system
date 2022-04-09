@@ -3,6 +3,8 @@ package Query.Process;
 import Query.GlobalConfig;
 
 import java.io.*;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -11,10 +13,10 @@ import java.util.regex.Pattern;
 
 public class Create {
 
-    GlobalConfig globalConfig = new GlobalConfig();
-    String basePath = globalConfig.getBasePath();
-    String filePathSeparator = globalConfig.getPathSeparator();
-    String delimiter = globalConfig.getDelimiter();
+    private GlobalConfig globalConfig = new GlobalConfig();
+    private String basePath = globalConfig.getBasePath();
+    private String filePathSeparator = globalConfig.getPathSeparator();
+    private String delimiter = globalConfig.getDelimiter();
 
     Common common = new Common();
 
@@ -161,18 +163,18 @@ public class Create {
         try {
             File file = new File(fileName);
             if (file.exists()) {
-                FileWriter fileWriter = new FileWriter(file, true);
+                FileWriter fileWriter = new FileWriter(file, StandardCharsets.UTF_8, true);
                 BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
                 PrintWriter printWriter = new PrintWriter(bufferedWriter);
-                printWriter.print(delimiter + tableName);
+                printWriter.print(delimiter + tableName.trim());
                 printWriter.close();
                 bufferedWriter.close();
                 fileWriter.close();
             }
             // create new file
             else {
-                PrintWriter printWriter = new PrintWriter(file);
-                printWriter.print(tableName);
+                PrintWriter printWriter = new PrintWriter(file,StandardCharsets.UTF_8);
+                printWriter.print(tableName.trim());
                 printWriter.close();
             }
             isWritten = true;
@@ -190,8 +192,8 @@ public class Create {
         System.out.println("fileName = " + fileName);
 
         try {
-            PrintWriter fileWriter = new PrintWriter(new File(fileName), "UTF-8");
-            fileWriter.print(tableColumnName.toString() + delimiter);
+            PrintWriter fileWriter = new PrintWriter(new File(fileName), StandardCharsets.UTF_8);
+            fileWriter.print(tableColumnName.toString().trim() + delimiter);
             fileWriter.close();
             isWritten = true;
         } catch (Exception e) {
@@ -209,8 +211,8 @@ public class Create {
         System.out.println("fileName = " + fileName);
 
         try {
-            PrintWriter fileWriter = new PrintWriter(new File(fileName), "UTF-8");
-            fileWriter.print(tableColumnName.toString() + delimiter + tableColumnType.toString());
+            PrintWriter fileWriter = new PrintWriter(new File(fileName), StandardCharsets.UTF_8);
+            fileWriter.print(tableColumnName.toString().trim() + delimiter + tableColumnType.toString().trim());
             fileWriter.close();
             isWritten = true;
         } catch (Exception e) {
@@ -229,8 +231,8 @@ public class Create {
         System.out.println("fileName = " + fileName);
 
         try {
-            PrintWriter fileWriter = new PrintWriter(new File(fileName), "UTF-8");
-            fileWriter.print(primaryKeys.toString() + delimiter + foreignKeys.toString() + delimiter + foreignRefKeys.toString());
+            PrintWriter fileWriter = new PrintWriter(new File(fileName), StandardCharsets.UTF_8);
+            fileWriter.print(primaryKeys.toString().trim() + delimiter + foreignKeys.toString().trim() + delimiter + foreignRefKeys.toString().trim());
             fileWriter.close();
             isWritten = true;
         } catch (FileNotFoundException e) {

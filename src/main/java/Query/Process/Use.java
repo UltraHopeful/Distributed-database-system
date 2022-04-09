@@ -8,9 +8,10 @@ import java.util.regex.Pattern;
 
 public class Use {
 
-    GlobalConfig globalConfig = new GlobalConfig();
+    private Common common = new Common();
+    private GlobalConfig globalConfig = new GlobalConfig();
 
-    String basePath = globalConfig.getBasePath();
+    private String basePath = globalConfig.getBasePath();
 
     public boolean check(String queryString){
         boolean isValidQuery = false;
@@ -23,10 +24,10 @@ public class Use {
         Matcher useParseMatcher = useParsePattern.matcher(queryString);
 
         if(useParseMatcher.find()){
-            String dbName = useParseMatcher.group(1);
+            String dbName = useParseMatcher.group(1).trim();
             System.out.println("basePath = " + basePath);
-            File folder = new File(basePath+dbName);
-            if(folder.exists()){
+
+            if(common.databaseCheck(dbName)){
                 System.out.println("Valid Query");
 //                System.out.println("dbName = " + dbName);
                 globalConfig.setGlobalDatabase(dbName);
@@ -34,7 +35,7 @@ public class Use {
                 isValidQuery = true;
             }
             else{
-                System.out.println("invalid query");
+                System.out.println("database not found");
                 isValidQuery = false;
             }
         }
