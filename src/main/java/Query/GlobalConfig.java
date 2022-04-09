@@ -21,7 +21,7 @@ public class GlobalConfig {
         this.basePath = basePath;
     }
 
-    public String getGlobalDatabase() {
+    public static String getGlobalDatabase() {
         return globalDatabase;
     }
 
@@ -29,11 +29,11 @@ public class GlobalConfig {
         this.globalDatabase = globalDatabase;
     }
 
-    public String getBasePath() {
+    public static String getBasePath() {
         return basePath;
     }
 
-    public String getPathSeparator() {
+    public static String getPathSeparator() {
         return pathSeparator;
     }
 
