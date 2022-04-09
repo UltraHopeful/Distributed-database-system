@@ -75,7 +75,12 @@ public class Update {
                         if (indexToUpdateList == null) {
                             System.out.println("Invalid operator for data type provided");
                             isValidQuery = false;
-                        } else {
+                        }
+                        else if(indexToUpdateList.size() == 0){
+                            System.out.println("No content to update");
+                            isValidQuery = true;
+                        }
+                        else {
                             int updatedRowCount = 0;
                             if (primaryKeyName.equals(updateColumnName)) {
                                 if (indexToUpdateList.size() == 1 && !primaryKeyList.contains(updateColumnValue)) {

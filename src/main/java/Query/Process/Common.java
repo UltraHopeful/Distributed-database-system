@@ -88,7 +88,7 @@ public class Common {
             String[] columnsString = columns.split(delimiter);
             String columnNames = columnsString[0].substring(1, columnsString[0].length() - 1);
             String[] columnListArray = columnNames.split(",");
-            for(String columnName : columnListArray){
+            for (String columnName : columnListArray) {
                 columnList.add(columnName.trim());
             }
             System.out.println("columnList = " + columnList);
@@ -154,8 +154,8 @@ public class Common {
 //                    System.out.println("datatype matching....");
                     if (columnTypeList[j].trim().equals("int")) {
                         //System.out.println("int data type");
-                        int dataValue = Integer.parseInt(rowValue[j]);
-                        int conditionValueInt = Integer.parseInt(conditionValue);
+                        int dataValue = Integer.valueOf(rowValue[j]);
+                        int conditionValueInt = Integer.valueOf(conditionValue);
                         if (condition.equals("==")) {
                             if (dataValue == conditionValueInt) {
                                 rowIndex.add(i);
@@ -214,16 +214,23 @@ public class Common {
         return rowIndex;
     }
 
-    public int updateDataRow(String tableName,String[] oldRowArray,String[] updateRowArray){
+    public int updateDataRow(String tableName, String[] oldRowArray, String[] updateRowArray) {
         int updateCount = 0;
 
         String currentDataBase = globalConfig.getGlobalDatabase();
         String dataFile = basePath + currentDataBase + filePathSeparator + tableName + ".txt";
 
-        String oldRow = "["+String.join(rowDelimiter,oldRowArray)+"]";
+        String oldRow = "[" + String.join(rowDelimiter, oldRowArray) + "]";
+        String updateRow;
+        if (updateRowArray != null) {
+            updateRow = "[" + String.join(rowDelimiter, updateRowArray) + "]";
+        } else {
+            oldRow += delimiter;
+            updateRow = "";
+        }
         System.out.println("oldRow = " + oldRow);
-        String updateRow = "["+String.join(rowDelimiter,updateRowArray)+"]";
         System.out.println("updateRow = " + updateRow);
+
 
         FileReader fileReader = null;
         try {
@@ -231,7 +238,7 @@ public class Common {
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String data = bufferedReader.readLine();
 
-            data = data.replace(oldRow,updateRow);
+            data = data.replace(oldRow, updateRow);
             System.out.println("data = " + data);
 
             bufferedReader.close();
@@ -243,7 +250,7 @@ public class Common {
             updateCount = 1;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        } catch (IOException IoE){
+        } catch (IOException IoE) {
             IoE.printStackTrace();
         }
 

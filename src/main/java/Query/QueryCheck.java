@@ -1,8 +1,5 @@
 package Query;
-import Query.Process.Create;
-import Query.Process.Insert;
-import Query.Process.Update;
-import Query.Process.Use;
+import Query.Process.*;
 
 public class QueryCheck {
 
@@ -10,6 +7,8 @@ public class QueryCheck {
     private Use parseUse = new Use();
     private Insert parseInsert = new Insert();
     private Update parseUpdate = new Update();
+    private Delete parseDelete = new Delete();
+    private Select parseSelect = new Select();
 
     public void queryFormatPrint() {
         System.out.println("create database <database_name>;");
@@ -51,13 +50,13 @@ public class QueryCheck {
         }
         else if(queryString.toLowerCase().startsWith("select")){
             System.out.println("Select query");
-//            if(parserUse.check(queryString)){
-//                System.out.println("Parse success select query");
-//                isQueryValid = true;
-//            }
-//            else{
-//                System.out.println("Parse error in select query");
-//            }
+            if(parseSelect.check(queryString)){
+                System.out.println("Parse success select query");
+                isQueryValid = true;
+            }
+            else{
+                System.out.println("Parse error in select query");
+            }
         }
         else if(queryString.toLowerCase().startsWith("update")){
             System.out.println("update query");
@@ -71,13 +70,13 @@ public class QueryCheck {
         }
         else if(queryString.toLowerCase().startsWith("delete")){
             System.out.println("delete query");
-//            if(parserUse.check(queryString)){
-//                System.out.println("Parse success delete query");
-//                isQueryValid = true;
-//            }
-//            else{
-//                System.out.println("Parse error in delete query");
-//            }
+            if(parseDelete.check(queryString)){
+                System.out.println("Parse success delete query");
+                isQueryValid = true;
+            }
+            else{
+                System.out.println("Parse error in delete query");
+            }
         }
         else{
             System.out.println("Invalid query type");
