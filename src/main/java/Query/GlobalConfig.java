@@ -1,5 +1,7 @@
 package Query;
 
+import UserManagement.UserLogin;
+
 import java.io.File;
 
 public class GlobalConfig {
@@ -37,11 +39,11 @@ public class GlobalConfig {
         return pathSeparator;
     }
 
-    public String getDelimeter() {
+    public String getDelimiter() {
         return delimeter;
     }
 
-    public static String getRowDelimeter() {
+    public static String getRowDelimiter() {
         return rowDelimeter;
     }
 }

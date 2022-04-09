@@ -1,18 +1,24 @@
 package UserManagement;
 
+import Query.GlobalConfig;
+
 import java.io.*;
 import java.util.Scanner;
 
 public class UserLogin {
 
     static Scanner sc = new Scanner(System.in);
-    public static String loginUser()
+    static GlobalConfig globalConfig = new GlobalConfig();
+    static String delimiter = globalConfig.getDelimiter();
+    static String username ="";
+
+    public static boolean loginUser()
     {
-        String username = "";
+        boolean logged = false;
         try
         {
             System.out.print("Please enter your username: ");
-             username = sc.nextLine();
+            username = sc.nextLine();
             String toCheckUser = Hashing.username(username);
             if (UserRegistration.checkUserExists(toCheckUser))
             {
@@ -27,6 +33,7 @@ public class UserLogin {
                     {
                         System.out.println("User logged in successfully!");
                         System.out.println("================================= New session created for the user. Welcome  " + username + "! ==============================================");
+                        return true;
                     }
                     else
                     {
@@ -41,13 +48,14 @@ public class UserLogin {
             else
             {
                 System.out.println("The user is not found in the database. Please register first!");
+
             }
         }
         catch (Exception e)
         {
             e.printStackTrace();
         }
-        return username;
+        return logged;
     }
 
     public static boolean validateUserProfile(String username, String password)
@@ -62,7 +70,7 @@ public class UserLogin {
                 if ((eachUser = br.readLine()) == null) break;
                 String[] allLines = eachUser.split("\n");
                 for (String everyLine : allLines) {
-                    String[] values = everyLine.split("\\|");
+                    String[] values = everyLine.split(delimiter);
                     if (values[0].equals(username)) {
                         if (values[1].equals(password)) {
                             isValid = true;
@@ -90,7 +98,7 @@ public class UserLogin {
                 if ((eachLine = br.readLine()) == null) break;
                 String[] allLines = eachLine.split("\n");
                 for (String everyLine : allLines) {
-                    String[] values = everyLine.split("\\|");
+                    String[] values = everyLine.split(delimiter);
                     if (values[0].equals(username)) {
                         System.out.println("Your security questions is: '" + values[2] + "'");
                         System.out.print("Please enter the answer to your security question: ");

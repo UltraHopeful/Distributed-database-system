@@ -3,14 +3,12 @@ package DataModel;
 import Query.GlobalConfig;
 
 import java.io.*;
-import java.lang.reflect.Array;
-import java.util.Arrays;
 
 public class DataModelRun {
     GlobalConfig globalConfig = new GlobalConfig();
     String basePath = globalConfig.getBasePath();
     String filePathSeparator = globalConfig.getPathSeparator();
-    String delimeter = globalConfig.getDelimeter();
+    String delimeter = globalConfig.getDelimiter();
 
     public void generateERD(String dbName) {
 

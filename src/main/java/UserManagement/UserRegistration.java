@@ -13,7 +13,7 @@ public class UserRegistration
     static GlobalConfig globalConfig = new GlobalConfig();
     static Scanner sc = new Scanner(System.in);
     static boolean userExists;
-    static String delimiter = globalConfig.getDelimeter();
+    static String delimiter = globalConfig.getDelimiter();
 
     public static void registerUser() throws IOException {
 
@@ -39,6 +39,7 @@ public class UserRegistration
                 System.out.println();
             } else {
                 System.out.println("Sorry! The User already exists");
+
             }
     }
 
@@ -52,7 +53,7 @@ public class UserRegistration
             do {
                 String[] allLines = line.split("\n");
                 for (String everyLine : allLines) {
-                    String[] values = everyLine.split("\\|");
+                    String[] values = everyLine.split(delimiter);
                     if (values[0].equals(hashedUserID)) {
                         return true;
                     }

@@ -5,7 +5,6 @@ import Query.GlobalConfig;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -14,7 +13,7 @@ public class Create {
     GlobalConfig globalConfig = new GlobalConfig();
     String basePath = globalConfig.getBasePath();
     String filePathSeparator = globalConfig.getPathSeparator();
-    String delimeter = globalConfig.getDelimeter();
+    String delimeter = globalConfig.getDelimiter();
 
     public boolean check(String queryString) {
         boolean isValidQuery = false;

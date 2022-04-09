@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class RunDDBMS {
-	static RunDDBMS runDDBMS = new RunDDBMS();
+
 	static Scanner scanner = new Scanner(System.in);
 
 	static QueryCheck queryParse = new QueryCheck();
@@ -27,8 +27,10 @@ public class RunDDBMS {
 
 		switch (option) {
 			case 1 -> {
-				String userName = UserLogin.loginUser();
-				operationMenu(userName);
+				if(UserLogin.loginUser()){
+					operationMenu();
+				}
+				userManage();
 				break;
 			}
 			case 2 -> {
@@ -39,15 +41,17 @@ public class RunDDBMS {
 			case 3 -> {
 				System.out.println("Exiting the application...");
 				System.exit(0);
+				break;
 			}
 			default -> {
 				System.out.println("You entered an invalid input.");
 				userManage();
+				break;
 			}
 		}
 	}
 
-	public static void operationMenu(String username) throws IOException {
+	public static void operationMenu() throws IOException {
 		System.out.println("\nPlease choose one of the following options:");
 		System.out.println("1. WRITE QUERIES");
 		System.out.println("2. EXPORT");
@@ -76,7 +80,8 @@ public class RunDDBMS {
 //			}
 
 				queryParse.queryCheck(queryString);
-				operationMenu(username);
+				operationMenu();
+				break;
 			}
 
 			case 2:
@@ -84,12 +89,14 @@ public class RunDDBMS {
 				System.out.println("Enter a Database you want to Export");
 				String dbName = scanner.nextLine();
 				ExportDataRun.createDB(dbName);
+				break;
 			}
 
 			case 3:
 			{
 				String erdString = scanner.nextLine();
 				dataModelRun.generateERD(erdString);
+				break;
 			}
 
 			case 4:
@@ -105,7 +112,8 @@ public class RunDDBMS {
 			default:
 			{
 				System.out.println("You entered an invalid input.");
-				operationMenu(username);
+				operationMenu();
+				break;
 			}
 		}
 
@@ -116,7 +124,7 @@ public class RunDDBMS {
 
 		if(operation.equalsIgnoreCase("yes"))
 		{
-			operationMenu(username);
+			operationMenu();
 		}
 		else if(operation.equalsIgnoreCase("no"))
 		{
