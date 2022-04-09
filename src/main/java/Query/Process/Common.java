@@ -56,9 +56,89 @@ public class Common {
             IoE.printStackTrace();
         }
 
-
         return structureList;
 
+    }
+
+    public List<String> getColumnNames(String tableName) {
+
+        List<String> columnList = new ArrayList<>();
+
+        String currentDataBase = globalConfig.getGlobalDatabase();
+        String structureFile = basePath + currentDataBase + filePathSeparator + tableName + "@structure.txt";
+
+        try {
+            FileReader fileReader = new FileReader(structureFile);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            String columns = bufferedReader.readLine();
+
+            String[] columnsString = columns.split(delimiter);
+            String columnNames = columnsString[0].substring(1, columnsString[0].length() - 1);
+            columnList = Arrays.asList(columnNames.split(","));
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException IoE) {
+            IoE.printStackTrace();
+        }
+
+        return columnList;
+
+    }
+
+    public List<String[]> getData(String tableName) {
+
+        List<String[]> rowData = new ArrayList<>();
+
+        String currentDataBase = globalConfig.getGlobalDatabase();
+        String dataFile = basePath + currentDataBase + filePathSeparator + tableName + ".txt";
+
+        try {
+            FileReader fileReader = new FileReader(dataFile);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            String rows = bufferedReader.readLine();
+            String[] rowValuesArray = rows.split(delimiter);
+
+            List<String> rowValues = new ArrayList<>();
+
+            for(String row:rowValuesArray){
+                rowValues.add(row);
+            }
+
+            rowValues.remove(0);
+
+            for(String row:rowValues){
+                row = row.substring(1,row.length()-1);
+                rowData.add(row.split(rowDelimiter));
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException IoE) {
+            IoE.printStackTrace();
+        }
+
+        return rowData;
+
+    }
+
+    public List<Integer> getSelectedRows(String tableName,int indexToFind,String conditionValue){
+        List<Integer> rowIndex = new ArrayList<>();
+
+        List<String[]> rowData = getData(tableName);
+
+        for(int i=0;i<rowData.size();i++){
+            String[] rowValue = rowData.get(i);
+            for(int j=0;j<rowValue.length;j++){
+                if(indexToFind == j && rowValue[j].equals(conditionValue)){
+                    rowIndex.add(i);
+                }
+            }
+        }
+
+        return rowIndex;
     }
 
     public int getPrimaryIndex(String tableName) {

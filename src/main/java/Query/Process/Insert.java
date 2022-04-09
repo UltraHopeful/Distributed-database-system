@@ -39,112 +39,110 @@ public class Insert {
 
         Matcher insertParseMatcher = insertParsePattern.matcher(queryString);
 
-        if (queryString.toLowerCase().contains("insert")) {
-            System.out.println("insert table detected");
-            currentDatabase = globalConfig.getGlobalDatabase();
-            if (insertParseMatcher.find()) {
-                if (currentDatabase != null) {
-                    if (insertParseMatcher.group("table").isEmpty() || insertParseMatcher.group("table").isBlank()) {
-                        System.out.println("Invalid query no table name found");
-                        isValidQuery = false;
-                    } else {
-                        System.out.println("Valid insert query");
-                        String tableName = insertParseMatcher.group("table").trim();
-                        String valuesToInsert = insertParseMatcher.group("values");
+        System.out.println("insert table detected");
+        currentDatabase = globalConfig.getGlobalDatabase();
+        if (insertParseMatcher.find()) {
+            if (currentDatabase != null) {
+                String tableName = insertParseMatcher.group("table").trim();
+                if (!common.tableCheck(tableName)) {
+                    System.out.println("Invalid query no table name found");
+                    isValidQuery = false;
+                } else {
+                    System.out.println("Valid insert query");
 
-                        System.out.println("valuesToInsert = " + valuesToInsert);
+                    String valuesToInsert = insertParseMatcher.group("values");
 
-                        Matcher insertValueMatcher = insertValuePattern.matcher(valuesToInsert);
+                    System.out.println("valuesToInsert = " + valuesToInsert);
 
-                        List<String[]> metadataList = common.getStructure(tableName);
-                        String primaryKey = common.getPrimaryKey(tableName);
+                    Matcher insertValueMatcher = insertValuePattern.matcher(valuesToInsert);
 
-                        System.out.println("metadataList = " + metadataList);
-                        System.out.println("Arrays.toString(metadataList[0] = " + metadataList.get(0)[0]);
-                        String[] columnNames = metadataList.get(0);
-                        System.out.println("columnNames.length = " + columnNames.length);
-                        String[] columnTypes = metadataList.get(1);
+                    List<String[]> metadataList = common.getStructure(tableName);
+                    String primaryKey = common.getPrimaryKey(tableName);
+
+                    System.out.println("metadataList = " + metadataList);
+                    System.out.println("Arrays.toString(metadataList[0] = " + metadataList.get(0)[0]);
+                    String[] columnNames = metadataList.get(0);
+                    System.out.println("columnNames.length = " + columnNames.length);
+                    String[] columnTypes = metadataList.get(1);
 
 
 //                    System.out.println("insertValueMatcher.results().count() = " + insertValueMatcher.results().count());
 //                    insertValueMatcher.reset();
-                        if (insertValueMatcher.results().count() == columnNames.length) {
-                            insertValueMatcher.reset();
-                            System.out.println("Valid values");
-                            int countValues = 0;
-                            String rowValue = "[";
-                            int primaryKeyIndex = common.getPrimaryIndex(tableName);
-                            List<Object> primaryKeyValueList = common.getPrimaryKeyList(tableName);
+                    if (insertValueMatcher.results().count() == columnNames.length) {
+                        insertValueMatcher.reset();
+                        System.out.println("Valid values");
+                        int countValues = 0;
+                        String rowValue = "[";
+                        int primaryKeyIndex = common.getPrimaryIndex(tableName);
+                        List<Object> primaryKeyValueList = common.getPrimaryKeyList(tableName);
 
-                            boolean isPrimaryKeyValueUnique = true;
-                            while (insertValueMatcher.find()) {
-                                String value = insertValueMatcher.group("value").trim();
-                                if (primaryKeyIndex != -1 && countValues == primaryKeyIndex && primaryKeyValueList.contains(value)) {
-                                    isPrimaryKeyValueUnique = false;
-                                }
-                                if(isPrimaryKeyValueUnique){
-                                    System.out.println("value = " + value);
-                                    String columnType = columnTypes[countValues].trim();
-                                    System.out.println("columnType = " + columnType);
-                                    if (columnType.equals("int")) {
-                                        try {
-                                            int columnValue = Integer.parseInt(value);
-                                            rowValue += value + rowDelimiter;
-                                            isValidQuery = true;
-                                        } catch (NumberFormatException nFE) {
-                                            nFE.printStackTrace();
-                                            System.out.println("Not integer value");
-                                            isValidQuery = false;
-                                            break;
-                                        }
-                                    } else if (columnType.matches("varchar|text")) {
+                        boolean isPrimaryKeyValueUnique = true;
+                        while (insertValueMatcher.find()) {
+                            String value = insertValueMatcher.group("value").trim();
+                            if (primaryKeyIndex != -1 && countValues == primaryKeyIndex && primaryKeyValueList.contains(value)) {
+                                isPrimaryKeyValueUnique = false;
+                            }
+                            if (isPrimaryKeyValueUnique) {
+                                System.out.println("value = " + value);
+                                String columnType = columnTypes[countValues].trim();
+                                System.out.println("columnType = " + columnType);
+                                if (columnType.equals("int")) {
+                                    try {
+                                        int columnValue = Integer.parseInt(value);
                                         rowValue += value + rowDelimiter;
                                         isValidQuery = true;
-                                    } else if (columnType.equals("boolean")) {
-                                        if (value.equals("true") | value.equals("false")) {
-                                            rowValue += value + rowDelimiter;
-                                            isValidQuery = true;
-                                        } else {
-                                            System.out.println("Not boolean value");
-                                            isValidQuery = false;
-                                            break;
-                                        }
-                                    } else {
-                                        System.out.println("Not valid type of data");
+                                    } catch (NumberFormatException nFE) {
+                                        nFE.printStackTrace();
+                                        System.out.println("Not integer value");
                                         isValidQuery = false;
                                         break;
                                     }
-                                    countValues++;
-
-                                }
-                                else{
-                                    System.out.println("Primary key value not unique");
+                                } else if (columnType.matches("varchar|text")) {
+                                    rowValue += value + rowDelimiter;
+                                    isValidQuery = true;
+                                } else if (columnType.equals("boolean")) {
+                                    if (value.equals("true") | value.equals("false")) {
+                                        rowValue += value + rowDelimiter;
+                                        isValidQuery = true;
+                                    } else {
+                                        System.out.println("Not boolean value");
+                                        isValidQuery = false;
+                                        break;
+                                    }
+                                } else {
+                                    System.out.println("Not valid type of data");
                                     isValidQuery = false;
                                     break;
                                 }
+                                countValues++;
 
-                            }
-                            if (isValidQuery) {
-                                rowValue = rowValue.substring(0, rowValue.length() - 1);
-                                rowValue += "]";
-                                System.out.println("rowValue = " + rowValue);
-                                writeTable(currentDatabase, tableName, rowValue);
-                                isValidQuery = true;
+                            } else {
+                                System.out.println("Primary key value not unique");
+                                isValidQuery = false;
+                                break;
                             }
 
-                        } else {
-                            System.out.println("Invalid values count");
+                        }
+                        if (isValidQuery) {
+                            rowValue = rowValue.substring(0, rowValue.length() - 1);
+                            rowValue += "]";
+                            System.out.println("rowValue = " + rowValue);
+                            writeTable(currentDatabase, tableName, rowValue);
+                            isValidQuery = true;
                         }
 
+                    } else {
+                        System.out.println("Invalid values count");
                     }
-                } else {
-                    System.out.println("Please set default schema/database first");
-                    System.out.println("enter command : \n use <database_name>;");
-                    isValidQuery = false;
-                }
-            }
 
+                }
+            } else {
+                System.out.println("Please set default schema/database first");
+                System.out.println("enter command : \n use <database_name>;");
+                isValidQuery = false;
+            }
         }
+
 
         return isValidQuery;
     }
