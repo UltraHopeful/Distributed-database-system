@@ -1,5 +1,7 @@
+
 import DataModel.DataModelRun;
 import ExportData.ExportDataRun;
+import LogManage.LoggerRun;
 import Query.QueryCheck;
 import Query.Transaction;
 
@@ -7,7 +9,8 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class RunDDBMS {
-
+	static RunDDBMS runDDBMS = new RunDDBMS();
+	static LoggerRun logRunner = new LoggerRun();
 	static Scanner scanner = new Scanner(System.in);
 
 	static QueryCheck queryParse = new QueryCheck();
@@ -15,6 +18,7 @@ public class RunDDBMS {
 	static Transaction transaction = new Transaction();
 	public static void main(String[] args) throws IOException {
 		userManage();
+		//
 	}
 
 	public static void userManage() throws IOException {
@@ -79,7 +83,6 @@ public class RunDDBMS {
 //					queryParse.queryCheck(queryString);
 //				}
 //			}
-
 				queryParse.queryCheck(queryString, true);
 				operationMenu();
 				break;
@@ -102,7 +105,10 @@ public class RunDDBMS {
 
 			case 4:
 			{
-				break;
+				System.out.println("hello");
+				logRunner.GeneralLogsWrite("create", "db1","2");
+				logRunner.EventLogsWrite("user1","db1","tb1","update");
+				logRunner.QueryLogsWrite("user2","db1","query3");
 			}
 
 			case 5:
