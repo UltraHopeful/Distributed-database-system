@@ -1,6 +1,18 @@
 # CSCI-5408-W2022- Group 19
 
-CSCI-5408-W2022- Project
+- Date Created: 10 Apr 2022
+- Last Modification Date: 10 Apr 2022
+
+- Authors:
+
+[Farhin Damania](fr454807@dal.ca)
+[Sarthak Patel](sr231438@dal.ca)
+[Kuldeep Bhimani](kl681090@dal.ca)
+[Soham Kansodaria](sh788512@dal.ca)
+[Alagu Swrnam Karruppiah](al581093@dal.ca)
+
+- GIT URL : https://git.cs.dal.ca/karruppiah/csci-5408-w2022-group-19 
+
 
 ## Getting started
 
