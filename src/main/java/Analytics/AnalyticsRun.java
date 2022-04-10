@@ -29,15 +29,12 @@ public class AnalyticsRun {
 			for (String row : dataValues) {
 				query_analytics_data.add(row.split(valuedelimiter));
 			}
-			List<String> b = new ArrayList<>();
 			Map<String, List<Map<String, Integer>>> map = new HashMap<>();
 			for (int i = 0; i < query_analytics_data.size(); i++) {
 
 				String a = Arrays.toString(query_analytics_data.get(i));
 				a = a.substring(1, a.length() - 1);
 				String[] query_list = a.split(",");
-
-				b = Arrays.asList(query_list);
 
 				if (map.containsKey(query_list[1])) {
 					List<Map<String, Integer>> userListM = map.get(query_list[1]);
@@ -87,11 +84,14 @@ public class AnalyticsRun {
 
 	public List<String[]> updateCount(String dbname) {
 		BufferedReader reader = null;
+		FileWriter analysisWriter = null;
 		List<String[]> update_analytics_data = new ArrayList<>();
 		try {
 			FileReader fr = new FileReader("./system/@Log/event_log.txt");
+			analysisWriter = new FileWriter("./system/@Analytics/Analysis.txt");
+			Map<String, Integer> data = new HashMap<>();
 			reader = new BufferedReader(fr);
-			String str = "";
+			String str = reader.readLine();
 			String[] dataValue = str.split(delimiter);
 			List<String> dataList = new ArrayList<>();
 			for (String row : dataValue) {
@@ -100,6 +100,32 @@ public class AnalyticsRun {
 			for (String row : dataList) {
 				update_analytics_data.add(row.split(valuedelimiter));
 			}
+			for (int i = 0; i < update_analytics_data.size(); i++) {
+				String a = Arrays.toString(update_analytics_data.get(i));
+				a = a.substring(1, a.length() - 1);
+				String[] dataArray = a.split(",");
+
+				if (dataArray[1].trim().equalsIgnoreCase(dbname)) {
+					if (dataArray[4].trim().equalsIgnoreCase("update")
+							&& dataArray[5].trim().equalsIgnoreCase("success")) {
+						if (data.containsKey(dataArray[3].trim())) {
+							data.replace(dataArray[3].trim(), data.get(dataArray[3].trim()) + 1);
+						} else {
+							data.put(dataArray[3].trim(), 1);
+						}
+					}
+				}
+			}
+
+			String queryAnalysis = "";
+			analysisWriter.write("This is the Analytics for Query Processing");
+			analysisWriter.write("\n---------------------------------------------\n");
+			for (var entry : data.entrySet()) {
+				queryAnalysis = "Total " + entry.getValue() + " Update operation are performed on " + entry.getKey();
+				analysisWriter.write(queryAnalysis);
+			}
+
+			System.out.println(data);
 		}
 
 		catch (IOException f) {
@@ -107,6 +133,7 @@ public class AnalyticsRun {
 		} finally {
 			try {
 				reader.close();
+				analysisWriter.close();
 			} catch (IOException e) {
 				System.out.println("Failed to get Queries Analytics");
 			}
@@ -114,9 +141,9 @@ public class AnalyticsRun {
 		return update_analytics_data;
 	}
 
-//	public static void main(String[] args) {
-//		AnalyticsRun a = new AnalyticsRun();
-//		// a.updateCount("db1");
-//		a.QueriesCount();
-//	}
+	public static void main(String[] args) {
+		AnalyticsRun a = new AnalyticsRun();
+		a.updateCount("db1");
+		// a.QueriesCount();
+	}
 }

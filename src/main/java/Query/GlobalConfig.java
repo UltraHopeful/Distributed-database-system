@@ -4,55 +4,77 @@ import java.io.File;
 
 public class GlobalConfig {
 
-    private static String globalDatabase;
+	private static String globalDatabase;
 
-    private static String pathSeparator = File.separator;
+	private static String pathSeparator = File.separator;
 
-    private static String delimiter = "\u2088";
+	private static String delimiter = "\u2088";
 
-    private static String rowDelimiter = "\u2087";
+	private static String rowDelimiter = "\u2087";
 
-    private static String sessionUserName;
+	private static String sessionUserName;
 
-    private static String basePath ="system"+pathSeparator+"";
+	private static String vm;
 
-    public GlobalConfig() {
-    }
+	private static String vmIP;
 
-    public GlobalConfig(String globalDatabase, String basePath) {
-        this.globalDatabase = globalDatabase;
-        this.basePath = basePath;
-    }
+	private static String basePath = "system" + pathSeparator + "";
 
-    public String getSessionUserName() {
-        return sessionUserName;
-    }
+	public GlobalConfig() {
+	}
 
-    public void setSessionUserName(String sessionUserName) {
-        GlobalConfig.sessionUserName = sessionUserName;
-    }
+	public GlobalConfig(String globalDatabase, String basePath) {
+		this.globalDatabase = globalDatabase;
+		this.basePath = basePath;
+	}
 
-    public String getGlobalDatabase() {
-        return globalDatabase;
-    }
+	public String getSessionUserName() {
+		return sessionUserName;
+	}
 
-    public void setGlobalDatabase(String globalDatabase) {
-        this.globalDatabase = globalDatabase;
-    }
+	public void setSessionUserName(String sessionUserName) {
+		GlobalConfig.sessionUserName = sessionUserName;
+	}
 
-    public String getBasePath() {
-        return basePath;
-    }
+	public String getGlobalDatabase() {
+		return globalDatabase;
+	}
 
-    public String getPathSeparator() {
-        return pathSeparator;
-    }
+	public void setGlobalDatabase(String globalDatabase) {
+		this.globalDatabase = globalDatabase;
+	}
 
-    public String getDelimiter() {
-        return delimiter;
-    }
+	public String getBasePath() {
+		return basePath;
+	}
 
-    public String getRowDelimiter() {
-        return rowDelimiter;
-    }
+	public String getPathSeparator() {
+		return pathSeparator;
+	}
+
+	public String getDelimiter() {
+		return delimiter;
+	}
+
+	public String getRowDelimiter() {
+		return rowDelimiter;
+	}
+
+	public static String getVm() {
+		return vm;
+	}
+
+	public static void setVm(String vm) {
+		GlobalConfig.vm = vm;
+	}
+
+	public static String getVmIP() {
+		return vmIP;
+	}
+
+	public static void setVmIP(String vmIP) {
+		GlobalConfig.vmIP = vmIP;
+	}
+	
+	
 }

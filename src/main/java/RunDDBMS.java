@@ -1,6 +1,7 @@
 import DataModel.DataModelRun;
 import ExportData.ExportDataRun;
 import LogManage.LoggerRun;
+import Query.GlobalConfig;
 import Query.QueryCheck;
 import Query.Transaction;
 import UserManagement.UserLogin;
@@ -24,7 +25,11 @@ public class RunDDBMS {
 	static LoggerRun logRunner = new LoggerRun();
 	static AnalyticsRun analytics = new AnalyticsRun();
 
+	static GlobalConfig globalConfig = new GlobalConfig();
+
 	public static void main(String[] args) throws IOException {
+		GlobalConfig.setVm(args[0]);
+		GlobalConfig.setVmIP(args[1]);
 		userManage();
 	}
 
@@ -113,12 +118,15 @@ public class RunDDBMS {
 			System.out.println("2-> Count Update Operations on a database");
 			Scanner s = new Scanner(System.in);
 			int analytic_choice = s.nextInt();
+			s.nextLine();
 			switch (analytic_choice) {
 			case 1: {
 				analytics.QueriesCount();
 			}
 			case 2: {
-				analytics.updateCount("dbname");
+				System.out.println("Enter a Database name to generate analytics");
+				String dbName = scanner.nextLine();
+				analytics.updateCount(dbName);
 			}
 			}
 			break;
@@ -138,7 +146,7 @@ public class RunDDBMS {
 				logRunner.GeneralLogsWrite("create", "db1", "2");
 			}
 			case 2: {
-				logRunner.EventLogsWrite("user1", "db1", "tb1", "update");
+				logRunner.EventLogsWrite("user1", "db1", "tb1", "update","success");
 			}
 			case 3: {
 				logRunner.QueryLogsWrite("user2", "db1", "query3");

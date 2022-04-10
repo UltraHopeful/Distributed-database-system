@@ -30,8 +30,8 @@ public class DistributedSystemRun {
 		ChannelSftp channel = null;
 		try {
 			JSch jsch = new JSch();
-			// jsch.setKnownHosts("/home/sarthakpatel0301/.ssh/authorized_keys");
-			// jsch.addIdentity("/home/sarthakpatel0301/.ssh/id_rsa");
+//			 jsch.setKnownHosts("/home/sarthakpatel0301/.ssh/authorized_keys");
+//			 jsch.addIdentity("/home/sarthakpatel0301/.ssh/id_rsa");
 			jsch.setKnownHosts("C://Users/sarth/.ssh/known_host");
 			jsch.addIdentity("C://Users/sarth/.ssh/id_rsa/sarth");
 			session = jsch.getSession(userName, ip, 22);
@@ -85,4 +85,6 @@ public class DistributedSystemRun {
 		return status;
 	}
 
+	
+	
 }
