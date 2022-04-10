@@ -2,6 +2,8 @@ import DataModel.DataModelRun;
 import ExportData.ExportDataRun;
 import Query.QueryCheck;
 import Query.Transaction;
+import UserManagement.UserLogin;
+import UserManagement.UserRegistration;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -13,6 +15,9 @@ public class RunDDBMS {
 	static QueryCheck queryParse = new QueryCheck();
 	static DataModelRun dataModelRun = new DataModelRun();
 	static Transaction transaction = new Transaction();
+	static ExportDataRun exportDataRun = new ExportDataRun();
+	static UserLogin userLogin = new UserLogin();
+	static UserRegistration userRegistration = new UserRegistration();
 	public static void main(String[] args) throws IOException {
 		userManage();
 	}
@@ -27,14 +32,14 @@ public class RunDDBMS {
 
 		switch (option) {
 			case 1 : {
-//				if(UserLogin.loginUser()){
-//					operationMenu();
-//				}
-				operationMenu();
+				if(userLogin.loginUser()){
+					operationMenu();
+				}
+				userManage();
 				break;
 			}
 			case 2 : {
-				//UserRegistration.registerUser();
+				userRegistration.registerUser();
 				userManage();
 				break;
 			}
@@ -88,15 +93,16 @@ public class RunDDBMS {
 
 			case 2:
 			{
-				System.out.println("Enter a Database you want to Export");
+				System.out.println("Enter a Database you want to dump as sql");
 				scanner = new Scanner(System.in);
 				String dbName = scanner.nextLine();
-				//ExportDataRun.createDB(dbName);
+				exportDataRun.generateDump(dbName);
 				break;
 			}
 
 			case 3:
 			{
+				System.out.println("Enter a Database name to generate entity relation diagram");
 				scanner = new Scanner(System.in);
 				String erdString = scanner.nextLine();
 				dataModelRun.generateERD(erdString);

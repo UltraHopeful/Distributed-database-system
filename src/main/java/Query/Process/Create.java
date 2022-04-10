@@ -40,7 +40,7 @@ public class Create {
 		// complex query regex
 		String createParseRegex = "(?:create)\\s+(?:(?:database\\s+(?:IF NOT EXISTS\\s*)?(?<database>\\w*);)|(?:table\\s+(?:IF NOT EXISTS\\s*)?(?<table>\\w*)\\s*(?<structure>[^;]*);))";
 
-		String structureValueRegex = "(?>(\\w*|(?>primary key)|(?>foreign key))\\s+(int|varchar|text|boolean|(?:[(](\\w*)[)]))(?:\\s+(?:references)\\s+(\\w*)\\s+(?:[(](\\w*)[)])|,))";
+		String structureValueRegex = "(?>(\\w*|(?>primary key)|(?>foreign key))\\s+(int|varchar|text|boolean|(?:[(](\\w*)[)]))(?:\\s+(?:references)\\s+(\\w*)\\s+(?:[(](\\w*)[)])|,|$))";
 
 		Pattern createParsePattern = Pattern.compile(createParseRegex, Pattern.MULTILINE | Pattern.CASE_INSENSITIVE);
 

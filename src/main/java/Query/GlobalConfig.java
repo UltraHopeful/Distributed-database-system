@@ -11,6 +11,9 @@ public class GlobalConfig {
     private static String delimiter = "\u2088";
 
     private static String rowDelimiter = "\u2087";
+
+    private static String sessionUserName;
+
     private static String basePath ="system"+pathSeparator+"";
 
     public GlobalConfig() {
@@ -19,6 +22,14 @@ public class GlobalConfig {
     public GlobalConfig(String globalDatabase, String basePath) {
         this.globalDatabase = globalDatabase;
         this.basePath = basePath;
+    }
+
+    public String getSessionUserName() {
+        return sessionUserName;
+    }
+
+    public void setSessionUserName(String sessionUserName) {
+        GlobalConfig.sessionUserName = sessionUserName;
     }
 
     public String getGlobalDatabase() {

@@ -43,6 +43,33 @@ public class Common {
 		return isTableExists;
 	}
 
+	public List<String> getTablesList(String databaseName) {
+
+		List<String> tableList = new ArrayList<>();
+
+		globalConfig.setGlobalDatabase(databaseName);
+		System.out.println("globalConfig = " + globalConfig.getGlobalDatabase());
+		String tableFileName = basePath + databaseName + filePathSeparator + databaseName + "@tables.txt";
+		System.out.println("tableFileName = " + tableFileName);
+
+		try {
+			FileReader fileReader = new FileReader(tableFileName, StandardCharsets.UTF_8);
+			BufferedReader bufferedReader = new BufferedReader(fileReader);
+			String tables = bufferedReader.readLine();
+			String[] tableListArray = tables.split(delimiter);
+
+			for (String tableName : tableListArray) {
+				tableList.add(tableName.trim());
+			}
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException ioE) {
+			ioE.printStackTrace();
+		}
+		return tableList;
+	}
+
 	public List<String[]> getStructure(String tableName) {
 
 		List<String[]> structureList = new ArrayList<>();

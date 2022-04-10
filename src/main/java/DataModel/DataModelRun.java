@@ -64,6 +64,7 @@ public class DataModelRun {
                     bufferedReader = new BufferedReader(fileReader);
                     String keyName = bufferedReader.readLine();
 
+                    // TODO make good file if table doesn't have the keys see trial2@erd.txt
                     if (keyName.length() > 1) {
                         String[] keynames = keyName.split(delimiter);
                         printWriter.println("");
