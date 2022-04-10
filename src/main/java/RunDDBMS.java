@@ -1,4 +1,5 @@
 
+import Analytics.AnalyticsRun;
 import DataModel.DataModelRun;
 import ExportData.ExportDataRun;
 import LogManage.LoggerRun;
@@ -11,6 +12,7 @@ import java.util.Scanner;
 public class RunDDBMS {
 	static RunDDBMS runDDBMS = new RunDDBMS();
 	static LoggerRun logRunner = new LoggerRun();
+	static AnalyticsRun analytics=new AnalyticsRun();
 	static Scanner scanner = new Scanner(System.in);
 
 	static QueryCheck queryParse = new QueryCheck();
@@ -105,14 +107,49 @@ public class RunDDBMS {
 
 			case 4:
 			{
-				System.out.println("hello");
-				logRunner.GeneralLogsWrite("create", "db1","2");
-				logRunner.EventLogsWrite("user1","db1","tb1","update");
-				logRunner.QueryLogsWrite("user2","db1","query3");
+				System.out.println("Your Analytics is right here!");
+				System.out.println("Please choose any one of the following analytics you want to perform");
+				System.out.println("1-> Count Queries");
+				System.out.println("2-> Count Update Operations on a database");
+				Scanner s=new Scanner(System.in);
+				int analytic_choice= s.nextInt();
+				switch (analytic_choice){
+					case 1:
+					{
+						analytics.QueriesCount();
+					}
+					case 2:
+					{
+						analytics.updateCount("dbname");
+					}
+				}
+				break;
 			}
 
 			case 5:
 			{
+				System.out.println("Your Logs Module is right here!");
+				System.out.println("Please choose any one of the following logs you are looking for");
+				System.out.println("1-> General Logs");
+				System.out.println("2-> Event Logs");
+				System.out.println("3-> Query Logs");
+				Scanner s=new Scanner(System.in);
+				int log_choice= s.nextInt();
+				switch (log_choice){
+					case 1:
+					{
+						logRunner.GeneralLogsWrite("create", "db1","2");
+					}
+					case 2:
+					{
+						logRunner.EventLogsWrite("user1","db1","tb1","update");
+					}
+					case 3:
+					{
+						logRunner.QueryLogsWrite("user2","db1","query3");
+					}
+				}
+
 				break;
 			}
 			
