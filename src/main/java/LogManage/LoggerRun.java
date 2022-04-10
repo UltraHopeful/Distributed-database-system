@@ -20,10 +20,26 @@ public class LoggerRun {
 	FileWriter general_log;
 	FileWriter event_log;
 	FileWriter query_log;
+	private static String pathSeparator = File.separator;
+	private static String basePath = "system" + pathSeparator + "";
+//	public static String path_logs_general = "./system/@Log/general_log.txt";
+//	public static String path_logs_event = "./system/@Log/event_log.txt";
+//	public static String path_logs_query = "./system/@Log/query_log.txt";
+public void createFolder(){
 
-	public static String path_logs_general = "./system/@Log/general_log.txt";
-	public static String path_logs_event = "./system/@Log/event_log.txt";
-	public static String path_logs_query = "./system/@Log/query_log.txt";
+	File folder = new File(basePath + pathSeparator + "@log");
+	if (folder.exists()) {
+		System.out.println("Log folder already exists");
+	} else {
+		folder.mkdirs();
+		System.out.println("Log folder created successfully");
+	}
+}
+
+	public static String log_folder = basePath + pathSeparator + "@log";
+	public static String path_logs_general = log_folder+ pathSeparator +"general_log.txt";
+	public static String path_logs_event = log_folder+ pathSeparator +"event_log.txt";
+	public static String path_logs_query = log_folder+ pathSeparator +"query_log.txt";
 
 	private GlobalConfig globalConfig = new GlobalConfig();
 	private String delimiter = globalConfig.getDelimiter();
@@ -38,6 +54,7 @@ public class LoggerRun {
 
 	public void writeToFile() {
 		try {
+			createFolder();
 			File generalLogFile = new File(path_logs_general);
 			File eventLogFile = new File(path_logs_event);
 			File queryLogFile = new File(path_logs_query);

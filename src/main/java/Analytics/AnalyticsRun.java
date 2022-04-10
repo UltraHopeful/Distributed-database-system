@@ -4,23 +4,38 @@ import java.io.*;
 import java.util.*;
 import Query.GlobalConfig;
 
+import static LogManage.LoggerRun.path_logs_event;
+import static LogManage.LoggerRun.path_logs_query;
+
 public class AnalyticsRun {
 	List<String[]> query_analytics_data = new ArrayList<>();
 
 	private GlobalConfig globalConfig = new GlobalConfig();
 	private String delimiter = globalConfig.getDelimiter();
 	private String valuedelimiter = globalConfig.getRowDelimiter();
+	private static String pathSeparator = File.separator;
+	private static String basePath = "system" + pathSeparator + "";
+	public void createFolder(){
 
+		File folder = new File(basePath + pathSeparator + "@analytics");
+		if (folder.exists()) {
+			System.out.println("Analytics folder already exists");
+		} else {
+			folder.mkdirs();
+			System.out.println("Analytics folder created successfully");
+		}
+	}
 	public List<String[]> QueriesCount() {
 		BufferedReader reader = null;
 		BufferedWriter writer = null;
 		try {
-			FileReader file = new FileReader("./system/@Log/query_log.txt");
+			createFolder();
+			FileReader file = new FileReader(path_logs_query);
 			reader = new BufferedReader(file);
 			String data = reader.readLine();
 			String[] dataValueArray = data.split(delimiter);
 			List<String> dataValues = new ArrayList<>();
-			FileWriter analysisWriter = new FileWriter("./system/@Analytics/Analysis.txt");
+			FileWriter analysisWriter = new FileWriter(basePath + pathSeparator + "@analytics"+pathSeparator+"Analysis.txt");
 			writer = new BufferedWriter(analysisWriter);
 
 			for (String row : dataValueArray) {
@@ -87,8 +102,8 @@ public class AnalyticsRun {
 		FileWriter analysisWriter = null;
 		List<String[]> update_analytics_data = new ArrayList<>();
 		try {
-			FileReader fr = new FileReader("./system/@Log/event_log.txt");
-			analysisWriter = new FileWriter("./system/@Analytics/Analysis.txt");
+			FileReader fr = new FileReader(path_logs_event);
+			analysisWriter = new FileWriter(basePath + pathSeparator + "@analytics"+pathSeparator+"Analysis.txt");
 			Map<String, Integer> data = new HashMap<>();
 			reader = new BufferedReader(fr);
 			String str = reader.readLine();
@@ -141,9 +156,9 @@ public class AnalyticsRun {
 		return update_analytics_data;
 	}
 
-	public static void main(String[] args) {
-		AnalyticsRun a = new AnalyticsRun();
-		a.updateCount("db1");
-		// a.QueriesCount();
-	}
+//	public static void main(String[] args) {
+//		AnalyticsRun a = new AnalyticsRun();
+//		a.updateCount("db1");
+//		// a.QueriesCount();
+//	}
 }
