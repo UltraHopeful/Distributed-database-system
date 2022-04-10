@@ -53,14 +53,14 @@ public class Create {
 		Matcher createParseMatcher = createParsePattern.matcher(queryString);
 
 		if (queryString.contains("database")) {
-			System.out.println("database detected");
+			//System.out.println("database detected");
 			if (createParseMatcher.find()) {
 				if (createParseMatcher.group("database").isEmpty()) {
 					System.out.println("Invalid query no database name found");
 					isValidQuery = false;
 				} else {
 					String dbName = createParseMatcher.group("database");
-					System.out.println("Database Name " + dbName);
+					//System.out.println("Database Name " + dbName);
 					File folder = new File(basePath + dbName);
 					if (folder.exists()) {
 						System.out.println("Database named " + dbName + " already exists");
@@ -79,8 +79,8 @@ public class Create {
 //        foreigeKeyRef=[salary.id]
 		else if (queryString.contains("table")) {
 			currentDataBase = globalConfig.getGlobalDatabase();
-			System.out.println("table detected");
-			System.out.println("currentDataBase = " + currentDataBase);
+			//System.out.println("table detected");
+			//System.out.println("currentDataBase = " + currentDataBase);
 			if (currentDataBase != null) {
 				if (createParseMatcher.find()) {
 					if (createParseMatcher.group("table").isEmpty() || createParseMatcher.group("table").isBlank()) {

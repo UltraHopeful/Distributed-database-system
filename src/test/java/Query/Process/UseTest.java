@@ -16,18 +16,18 @@ public class UseTest {
     String useInvalidDB2 = "USE  ;";
     String useInvalidDB3 = "USE ";
 
-//    @Test
-//    public void useDBTest(){
-//        assertEquals(true, queryParse.queryCheck(useValidDB1));
-//        System.out.println();
-//        assertEquals(true, queryParse.queryCheck(useValidDB2));
-//        System.out.println();
-//        assertEquals(true, queryParse.queryCheck(useValidDB3));
-//        System.out.println();
-//        assertEquals(false, queryParse.queryCheck(useInvalidDB1));
-//        System.out.println();
-//        assertEquals(false, queryParse.queryCheck(useInvalidDB2));
-//        System.out.println();
-//        assertEquals(false, queryParse.queryCheck(useInvalidDB3));
-//    }
+    @Test
+    public void useDBTest(){
+        assertEquals(true, queryParse.queryCheck(useValidDB1,true));
+        System.out.println();
+        assertEquals(true, queryParse.queryCheck(useValidDB2,true));
+        System.out.println();
+        assertEquals(true, queryParse.queryCheck(useValidDB3,true));
+        System.out.println();
+        assertEquals(false, queryParse.queryCheck(useInvalidDB1,true));
+        System.out.println();
+        assertEquals(false, queryParse.queryCheck(useInvalidDB2,true));
+        System.out.println();
+        assertEquals(false, queryParse.queryCheck(useInvalidDB3,true));
+    }
 }

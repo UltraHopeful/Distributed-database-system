@@ -4,6 +4,9 @@ import Query.GlobalConfig;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -48,13 +51,14 @@ public class Common {
 		String structureFile = basePath + currentDataBase + filePathSeparator + tableName + "@structure.txt";
 
 		try {
-			FileReader fileReader = new FileReader(structureFile);
+			FileReader fileReader = new FileReader(structureFile,StandardCharsets.UTF_8);
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 
 			String columns = bufferedReader.readLine();
 
 			String[] columnList = columns.split(delimiter);
-			System.out.println("dddf -" + columnList.length);
+			System.out.println("columnList[0] = " + columnList[0]);
+			System.out.println("dddf =" + columnList.length);
 			String columnNames = columnList[0].substring(1, columnList[0].length() - 1);
 			String columnTypes = columnList[1].substring(1, columnList[1].length() - 1);
 			String[] columnNamesList = columnNames.split(",");
@@ -81,7 +85,7 @@ public class Common {
 		String structureFile = basePath + currentDataBase + filePathSeparator + tableName + "@structure.txt";
 
 		try {
-			FileReader fileReader = new FileReader(structureFile);
+			FileReader fileReader = new FileReader(structureFile,StandardCharsets.UTF_8);
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 
 			String columns = bufferedReader.readLine();
@@ -111,7 +115,7 @@ public class Common {
 		String dataFile = basePath + currentDataBase + filePathSeparator + tableName + ".txt";
 
 		try {
-			FileReader fileReader = new FileReader(dataFile);
+			FileReader fileReader = new FileReader(dataFile,StandardCharsets.UTF_8);
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 
 			String rows = bufferedReader.readLine();
@@ -233,17 +237,16 @@ public class Common {
 			System.out.println("oldRow = " + oldRow);
 			System.out.println("updateRow = " + updateRow);
 
-			FileReader fileReader = null;
+//			FileReader fileReader = null;
 			try {
-				fileReader = new FileReader(dataFile);
-				BufferedReader bufferedReader = new BufferedReader(fileReader);
+				Path path = Paths.get(dataFile);
+				BufferedReader bufferedReader = Files.newBufferedReader(path);
 				String data = bufferedReader.readLine();
 
 				data = data.replace(oldRow, updateRow);
 				System.out.println("data = " + data);
 
 				bufferedReader.close();
-				fileReader.close();
 
 				PrintWriter printWriter = new PrintWriter(new File(dataFile), StandardCharsets.UTF_8);
 				printWriter.print(data);
@@ -266,7 +269,7 @@ public class Common {
 		String structureFile = basePath + currentDataBase + filePathSeparator + tableName + "@structure.txt";
 
 		try {
-			FileReader fileReader = new FileReader(structureFile);
+			FileReader fileReader = new FileReader(structureFile,StandardCharsets.UTF_8);
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 
 			String columns = bufferedReader.readLine();
@@ -297,7 +300,7 @@ public class Common {
 		String keyFile = basePath + currentDataBase + filePathSeparator + tableName + "@key.txt";
 
 		try {
-			FileReader fileReader = new FileReader(keyFile);
+			FileReader fileReader = new FileReader(keyFile,StandardCharsets.UTF_8);
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 
 			String keyNames = bufferedReader.readLine();
@@ -324,7 +327,7 @@ public class Common {
 		String keyFile = basePath + currentDataBase + filePathSeparator + tableName + "@key.txt";
 
 		try {
-			FileReader fileReader = new FileReader(keyFile);
+			FileReader fileReader = new FileReader(keyFile,StandardCharsets.UTF_8);
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 
 			String keyNames = bufferedReader.readLine();
@@ -363,7 +366,7 @@ public class Common {
 
 		FileReader fileReader = null;
 		try {
-			fileReader = new FileReader(keyFile);
+			fileReader = new FileReader(keyFile,StandardCharsets.UTF_8);
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 
 			String primaryKeyValues = bufferedReader.readLine();

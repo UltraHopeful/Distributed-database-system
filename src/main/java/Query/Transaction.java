@@ -8,7 +8,7 @@ public class Transaction {
 	QueryCheck queryCheck = new QueryCheck();
 
 	public void getTransaction() {
-		System.out.println("------ Enter your transcation queries");
+		System.out.println("------ Enter your transaction queries");
 		Scanner sc = new Scanner(System.in);
 		String queryString = "";
 		List<String> queryList = new ArrayList<>();
@@ -23,7 +23,7 @@ public class Transaction {
 				break;
 			}
 
-			else if (queryString.equalsIgnoreCase("roleback")) {
+			else if (queryString.equalsIgnoreCase("rollback")) {
 				boolean flag = runTransaction(queryList, false);
 			} else if (queryString.equalsIgnoreCase("end") || queryString.equals("")) {
 				break;

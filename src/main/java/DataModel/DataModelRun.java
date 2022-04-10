@@ -4,6 +4,7 @@ import Query.GlobalConfig;
 
 import java.io.*;
 import java.lang.reflect.Array;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
 public class DataModelRun {
@@ -17,11 +18,11 @@ public class DataModelRun {
         try {
             String path = basePath + dbName;
             String erdFilename= basePath + dbName + "@ERD.txt";
-            PrintWriter printWriter = new PrintWriter(new File(erdFilename));
+            PrintWriter printWriter = new PrintWriter(new File(erdFilename),StandardCharsets.UTF_8);
             File folder = new File(path);
 
             if (folder.exists()) {
-                FileReader fileReader = new FileReader(path + filePathSeparator + dbName + "@tables.txt");
+                FileReader fileReader = new FileReader(path + filePathSeparator + dbName + "@tables.txt", StandardCharsets.UTF_8);
                 BufferedReader bufferedReader = new BufferedReader(fileReader);
                 String tables = bufferedReader.readLine();
 
@@ -34,7 +35,7 @@ public class DataModelRun {
                 for (String table : tableList) {
                     String structure = path + filePathSeparator + table + "@structure.txt";
                     String key = path + filePathSeparator + table + "@key.txt";
-                    fileReader = new FileReader(structure);
+                    fileReader = new FileReader(structure,StandardCharsets.UTF_8);
                     printWriter.println(" ");
                     printWriter.println(" ");
                     printWriter.println("#######################TABLE NAME#######################");
@@ -59,7 +60,7 @@ public class DataModelRun {
                     bufferedReader.close();
                     fileReader.close();
 
-                    fileReader = new FileReader(key);
+                    fileReader = new FileReader(key,StandardCharsets.UTF_8);
                     bufferedReader = new BufferedReader(fileReader);
                     String keyName = bufferedReader.readLine();
 

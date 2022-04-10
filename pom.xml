@@ -33,7 +33,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>DistributedSystemRun</mainClass>
+							<mainClass>RunDDBMS</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
@@ -53,7 +53,7 @@
 							<archive>
 								<manifest>
 									<addClasspath>true</addClasspath>
-									<mainClass>DistributedSystem.DistributedSystemRun</mainClass>
+									<mainClass>RunDDBMS</mainClass>
 								</manifest>
 							</archive>
 							<descriptorRefs>
@@ -68,8 +68,8 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>8</source>
-					<target>8</target>
+					<source>17</source>
+					<target>17</target>>
 				</configuration>
 			</plugin>
 		</plugins>

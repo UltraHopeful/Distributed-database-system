@@ -39,7 +39,7 @@ public class Insert {
 
 		Matcher insertParseMatcher = insertParsePattern.matcher(queryString);
 
-		System.out.println("insert table detected");
+		//System.out.println("insert table detected");
 		currentDatabase = globalConfig.getGlobalDatabase();
 		if (insertParseMatcher.find()) {
 			if (currentDatabase != null) {
@@ -52,24 +52,24 @@ public class Insert {
 
 					String valuesToInsert = insertParseMatcher.group("values");
 
-					System.out.println("valuesToInsert = " + valuesToInsert);
+					//System.out.println("valuesToInsert = " + valuesToInsert);
 
 					Matcher insertValueMatcher = insertValuePattern.matcher(valuesToInsert);
 
 					List<String[]> metadataList = common.getStructure(tableName);
 					String primaryKey = common.getPrimaryKey(tableName);
 
-					System.out.println("metadataList = " + metadataList);
-					System.out.println("Arrays.toString(metadataList[0] = " + metadataList.get(0)[0]);
+					//System.out.println("metadataList = " + metadataList);
+					//System.out.println("Arrays.toString(metadataList[0] = " + metadataList.get(0)[0]);
 					String[] columnNames = metadataList.get(0);
-					System.out.println("columnNames.length = " + columnNames.length);
+					//System.out.println("columnNames.length = " + columnNames.length);
 					String[] columnTypes = metadataList.get(1);
 
 //                    System.out.println("insertValueMatcher.results().count() = " + insertValueMatcher.results().count());
 //                    insertValueMatcher.reset();
 					if (insertValueMatcher.results().count() == columnNames.length) {
 						insertValueMatcher.reset();
-						System.out.println("Valid values");
+						//System.out.println("Valid values");
 						int countValues = 0;
 						String rowValue = "[";
 						int primaryKeyIndex = common.getPrimaryIndex(tableName);
@@ -83,9 +83,9 @@ public class Insert {
 								isPrimaryKeyValueUnique = false;
 							}
 							if (isPrimaryKeyValueUnique) {
-								System.out.println("value = " + value);
+								//System.out.println("value = " + value);
 								String columnType = columnTypes[countValues].trim();
-								System.out.println("columnType = " + columnType);
+								//System.out.println("columnType = " + columnType);
 								if (columnType.equals("int")) {
 									try {
 										int columnValue = Integer.parseInt(value);
@@ -125,7 +125,7 @@ public class Insert {
 						}
 						if (isValidQuery) {
 							rowValue = rowValue.substring(0, rowValue.length() - 1);
-							rowValue += "]";
+							rowValue += "]";;
 							System.out.println("rowValue = " + rowValue);
 							writeTable(currentDatabase, tableName, rowValue,doWrite);
 							isValidQuery = true;
@@ -150,17 +150,13 @@ public class Insert {
 		boolean isWritten = false;
 		if (doWrite) {
 			String fileName = basePath + dbName + filePathSeparator + "" + tableName + ".txt";
-			System.out.println("fileName = " + fileName);
+			//System.out.println("fileName = " + fileName);
 
 			try {
 				File file = new File(fileName);
 				if (file.exists()) {
 					FileWriter fileWriter = new FileWriter(file, true);
-					BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-					PrintWriter printWriter = new PrintWriter(bufferedWriter);
-					printWriter.print(rowValue + delimiter);
-					printWriter.close();
-					bufferedWriter.close();
+					fileWriter.write(rowValue + delimiter);
 					fileWriter.close();
 				}
 				// create new file

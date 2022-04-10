@@ -1,6 +1,7 @@
 package UserManagement;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 public class userLogin {
 
@@ -13,7 +14,7 @@ public class userLogin {
                 System.out.println("New login file created!");
             }
 
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(file, StandardCharsets.UTF_8));
 
             String line = bufferedReader.readLine();   //read the text file line by line
             int flag = 0;  //if 0 after the loop, no UserManagement.user found

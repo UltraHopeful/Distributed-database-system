@@ -22,8 +22,8 @@ public class RunDDBMS {
 		System.out.println("1. LOGIN USER");
 		System.out.println("2. REGISTER NEW USER");
 		System.out.println("3. EXIT");
-		Scanner sc = new Scanner(System.in);
-		int option = sc.nextInt();
+//		Scanner sc = new Scanner(System.in);
+		int option = scanner.nextInt();
 
 		switch (option) {
 			case 1 : {
@@ -59,14 +59,15 @@ public class RunDDBMS {
 		System.out.println("4. ANALYTICS");
 		System.out.println("5. SHOW LOGS");
 		System.out.println("6. TRANSACTION");
-		Scanner scanner1 = new Scanner(System.in);
-		int option = scanner1.nextInt();
+//		Scanner scanner1 = new Scanner(System.in);
+		int option = scanner.nextInt();
 
 		switch (option)
 		{
 			case 1:
 			{
 				queryParse.queryFormatPrint();
+				scanner = new Scanner(System.in);
 				String queryString = scanner.nextLine();
 //			while(true){
 //				if(queryParse.queryCheck(queryString)){
@@ -88,6 +89,7 @@ public class RunDDBMS {
 			case 2:
 			{
 				System.out.println("Enter a Database you want to Export");
+				scanner = new Scanner(System.in);
 				String dbName = scanner.nextLine();
 				//ExportDataRun.createDB(dbName);
 				break;
@@ -95,21 +97,18 @@ public class RunDDBMS {
 
 			case 3:
 			{
+				scanner = new Scanner(System.in);
 				String erdString = scanner.nextLine();
 				dataModelRun.generateERD(erdString);
 				break;
 			}
 
 			case 4:
-			{
+
+			case 5: {
 				break;
 			}
 
-			case 5:
-			{
-				break;
-			}
-			
 			case 6:
 			{
 				transaction.getTransaction();
@@ -123,11 +122,12 @@ public class RunDDBMS {
 				break;
 			}
 		}
-		scanner1.close();
+//		scanner1.close();
 		System.out.println("Do you want to stay on our application and perform more actions?");
 		System.out.println("Type yes or no");
-		Scanner scanner2 = new Scanner(System.in);
-		String operation = scanner2.nextLine();
+//		Scanner scanner2 = new Scanner(System.in);
+		scanner = new Scanner(System.in);
+		String operation = scanner.nextLine();
 
 		if(operation.equalsIgnoreCase("yes"))
 		{
@@ -143,7 +143,7 @@ public class RunDDBMS {
 			System.out.println("Invalid entry. Please enter either yes or no to continue!");
 		}
 		
-		scanner2.close();
+//		scanner2.close();
 		
 	}
 }

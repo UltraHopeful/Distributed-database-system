@@ -36,27 +36,27 @@ class CreateTest {
         assertEquals(false, queryParse.queryCheck(createInvalidDB3,true));
     }
 
-//    @Test
-//    public void createTableTest(){
-//        queryParse.queryCheck("USE trial1;");
-//        // TODO first delete all the files todo2.txt todo2@key.txt todo2@structure.txt
-//        System.out.println("New table-----------------------------");
-//        assertEquals(true, queryParse.queryCheck(createValidTable1));
-//        // TODO first delete all the files todo1.txt todo1@key.txt todo1@structure.txt
-//        System.out.println("New table check------------------------------");
-//        assertEquals(true, queryParse.queryCheck(createValidTable2));
-//        System.out.println("Table already exists test--------------------------");
-//        assertEquals(false, queryParse.queryCheck(createInvalidTable5));
-//        System.out.println("Structure not valid---------------------------");
-//        assertEquals(false, queryParse.queryCheck(createInvalidTable1));
-//        System.out.println("Structure not valid-------------------------");
-//        assertEquals(false, queryParse.queryCheck(createInvalidTable2));
-//        System.out.println("last semicolon missing --------------------");
-//        assertEquals(false, queryParse.queryCheck(createInvalidTable3));
-//        System.out.println("tablename missing-----------------------");
-//        assertEquals(false, queryParse.queryCheck(createInvalidTable4));
-//        System.out.println();
-////        assertEquals(false, queryParse.queryCheck(createInvalidDB3));
-//    }
+    @Test
+    public void createTableTest(){
+        queryParse.queryCheck("USE trial1;",true);
+        // TODO first delete all the files todo2.txt todo2@key.txt todo2@structure.txt
+        System.out.println("New table-----------------------------");
+        assertEquals(true, queryParse.queryCheck(createValidTable1,true));
+        // TODO first delete all the files todo1.txt todo1@key.txt todo1@structure.txt
+        System.out.println("New table check------------------------------");
+        assertEquals(true, queryParse.queryCheck(createValidTable2,true));
+        System.out.println("Table already exists test--------------------------");
+        assertEquals(false, queryParse.queryCheck(createInvalidTable5,true));
+        System.out.println("Structure not valid---------------------------");
+        assertEquals(false, queryParse.queryCheck(createInvalidTable1,true));
+        System.out.println("Structure not valid-------------------------");
+        assertEquals(false, queryParse.queryCheck(createInvalidTable2,true));
+        System.out.println("last semicolon missing --------------------");
+        assertEquals(false, queryParse.queryCheck(createInvalidTable3,true));
+        System.out.println("tablename missing-----------------------");
+        assertEquals(false, queryParse.queryCheck(createInvalidTable4,true));
+        System.out.println();
+        assertEquals(false, queryParse.queryCheck(createInvalidDB3,true));
+    }
 
 }

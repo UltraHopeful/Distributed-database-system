@@ -1,6 +1,7 @@
 package UserManagement;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 public class userRegistration {
@@ -14,7 +15,7 @@ public class userRegistration {
 
         try {
             File file = new File("User_Profile.txt");
-            BufferedReader bufferedReader=new BufferedReader(new FileReader(file));
+            BufferedReader bufferedReader=new BufferedReader(new FileReader(file, StandardCharsets.UTF_8));
             FileWriter fileWriter = new FileWriter(file, true);   //true means while is appended
             Scanner scanner=new Scanner(System.in);
             String line=bufferedReader.readLine();

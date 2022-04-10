@@ -3,7 +3,30 @@ trial1
  
  
 #######################TABLE NAME#######################
-todo
+todo2
+
+######STRUCTURE######
+
+column name: todo_id
+column type: int
+ 
+column name:  todo
+column type:  varchar
+ 
+column name:  is_completed
+column type:  boolean
+ 
+
+######KEY######
+
+primary key: todo_id
+foreign key: task_id to tasks.task_id
+
+####################################################
+ 
+ 
+#######################TABLE NAME#######################
+todo1
 
 ######STRUCTURE######
 
@@ -27,24 +50,23 @@ foreign key:  task_id to  tasks.task_id
  
  
 #######################TABLE NAME#######################
-user
+todo
 
 ######STRUCTURE######
 
-column name: user_id
+column name: todo_id
 column type: int
  
-column name:  user_name
+column name:  todo
 column type:  varchar
  
-column name:  mail
-column type:  varchar
+column name:  is_completed
+column type:  boolean
  
 
 ######KEY######
 
-primary key: user_id
-foreign key: user_id to people.user_id
-foreign key:  user_id to  employee.user_id
+primary key: todo_id
+foreign key: task_id to tasks.task_id
 
 ####################################################
