@@ -1,0 +1,3 @@
+This is the Analytics for Query Processing
+---------------------------------------------
+User user2 submitted 1 queries for DB  db1

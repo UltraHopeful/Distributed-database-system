@@ -14,7 +14,7 @@ public class Transaction {
 		List<String> queryList = new ArrayList<>();
 		while (true) {
 			queryString = sc.nextLine();
-			if (queryString.equalsIgnoreCase("commit")) {
+			if (queryString.equalsIgnoreCase("commit")||queryString.equalsIgnoreCase("commit;")) {
 				boolean flag = runTransaction(queryList, false);
 				if (flag) {
 					runTransaction(queryList, true);
@@ -31,8 +31,6 @@ public class Transaction {
 				queryList.add(queryString);
 			}
 		}
-
-		sc.close();
 	}
 
 	boolean runTransaction(List<String> queryList, boolean doWrite) {
