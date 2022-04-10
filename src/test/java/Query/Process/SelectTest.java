@@ -17,19 +17,19 @@ public class SelectTest {
 
     private String selectInvalid1 = "";
 
-    @Test
-    public void setSelectValid1(){
-        queryParse.queryCheck("USE trial1;");
-
-        queryParse.queryCheck(selectValid1);
-        queryParse.queryCheck(selectValid2);
-        queryParse.queryCheck(selectValid3);
-        queryParse.queryCheck(selectValid4);
-        queryParse.queryCheck(selectValid5);
-        queryParse.queryCheck(selectValid6);
-        queryParse.queryCheck(selectValid7);
-
-        queryParse.queryCheck(selectInvalid1);
-    }
+//    @Test
+//    public void setSelectValid1(){
+//        queryParse.queryCheck("USE trial1;");
+//
+//        queryParse.queryCheck(selectValid1);
+//        queryParse.queryCheck(selectValid2);
+//        queryParse.queryCheck(selectValid3);
+//        queryParse.queryCheck(selectValid4);
+//        queryParse.queryCheck(selectValid5);
+//        queryParse.queryCheck(selectValid6);
+//        queryParse.queryCheck(selectValid7);
+//
+//        queryParse.queryCheck(selectInvalid1);
+//    }
 
 }

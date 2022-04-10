@@ -16,7 +16,7 @@ public class Update {
     private String delimiter = globalConfig.getDelimiter();
     private String rowDelimiter = globalConfig.getRowDelimiter();
 
-    public boolean check(String queryString) {
+    public boolean check(String queryString, boolean doWrite) {
 
         boolean isValidQuery = false;
 
@@ -93,7 +93,7 @@ public class Update {
                                         newRow[updateColumnIndex] = updateColumnValue;
                                         System.out.println("oldRow = " + Arrays.toString(oldRow));
                                         System.out.println("newRow = " + Arrays.toString(newRow));
-                                        updatedRowCount += common.updateDataRow(tableName, oldRow, newRow);
+                                        updatedRowCount += common.updateDataRow(tableName, oldRow, newRow,doWrite);
                                         System.out.println("updatedRowCount = " + updatedRowCount);
                                     }
                                     isValidQuery = true;
@@ -112,7 +112,7 @@ public class Update {
                                         newRow[updateColumnIndex] = updateColumnValue;
                                         System.out.println("oldRow = " + Arrays.toString(oldRow));
                                         System.out.println("Arrays.toString(newRow) = " + Arrays.toString(newRow));
-                                        updatedRowCount += common.updateDataRow(tableName, oldRow, newRow);
+                                        updatedRowCount += common.updateDataRow(tableName, oldRow, newRow,doWrite);
                                         System.out.println("updatedRowCount = " + updatedRowCount);
                                     }
                                     isValidQuery = true;

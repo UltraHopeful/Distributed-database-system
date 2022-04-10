@@ -17,7 +17,7 @@ public class CommonTest {
     @Test
     public void metadataTests(){
 
-        queryParse.queryCheck("USE trial1;");
+        queryParse.queryCheck("USE trial1;", true);
         
         String tableName = "todo";
         

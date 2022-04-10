@@ -15,13 +15,13 @@ public class QueryCheck {
         System.out.println("create database if not exists <database_name>;");
     }
 
-    public boolean queryCheck(String queryString){
+    public boolean queryCheck(String queryString, boolean doWrite){
         boolean isQueryValid = false;
 
         queryString = queryString.trim();
 
         if(queryString.toLowerCase().startsWith("create")){
-            if(parseCreate.check(queryString))
+            if(parseCreate.check(queryString,doWrite))
             {
                 System.out.println("Parse success create query");
                 isQueryValid = true;
@@ -40,7 +40,7 @@ public class QueryCheck {
             }
         }
         else if(queryString.toLowerCase().startsWith("insert")){
-            if(parseInsert.check(queryString)){
+            if(parseInsert.check(queryString,doWrite)){
                 System.out.println("Parse success insert query");
                 isQueryValid = true;
             }
@@ -50,7 +50,7 @@ public class QueryCheck {
         }
         else if(queryString.toLowerCase().startsWith("select")){
             System.out.println("Select query");
-            if(parseSelect.check(queryString)){
+            if(parseSelect.check(queryString,doWrite)){
                 System.out.println("Parse success select query");
                 isQueryValid = true;
             }
@@ -60,7 +60,7 @@ public class QueryCheck {
         }
         else if(queryString.toLowerCase().startsWith("update")){
             System.out.println("update query");
-            if(parseUpdate.check(queryString)){
+            if(parseUpdate.check(queryString,doWrite)){
                 System.out.println("Parse success update query");
                 isQueryValid = true;
             }
@@ -70,7 +70,7 @@ public class QueryCheck {
         }
         else if(queryString.toLowerCase().startsWith("delete")){
             System.out.println("delete query");
-            if(parseDelete.check(queryString)){
+            if(parseDelete.check(queryString,doWrite)){
                 System.out.println("Parse success delete query");
                 isQueryValid = true;
             }

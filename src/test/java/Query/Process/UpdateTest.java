@@ -18,47 +18,47 @@ public class UpdateTest {
     private String updateInvalid3 = "UPDATE todo SET todo_id = \"3\" WHERE todo == \"homework\";";
     private String updateInvalid4 = "UPDATE todo SET is_completed = \"true\" WHERE todo_id == \"6\";";
 
-    @Test
-    public void UpdateValidTest1(){
-
-        queryParse.queryCheck("USE TRIAL1;");
-
-        System.out.println("Valid Update query---------------");
-        assertEquals(true,queryParse.queryCheck(updateValid1));
-
-    }
-
-    @Test
-    public void UpdateValidTest2(){
-
-        queryParse.queryCheck("USE TRIAL1;");
-
-        System.out.println("Valid Update query---------------");
-        assertEquals(true,queryParse.queryCheck(updateValid2));
-
-
-    }
-
-    @Test
-    public void UpdateValidTest3(){
-
-        queryParse.queryCheck("USE TRIAL1;");
-
-        System.out.println("Valid Update query---------------");
-        assertEquals(true,queryParse.queryCheck(updateValid3));
-
-    }
-
-    @Test
-    public void UpdateInvalidTests(){
-
-        queryParse.queryCheck("USE TRIAL1;");
-
-        System.out.println("Invalid update query -----------------");
-        assertEquals(true,queryParse.queryCheck(updateInvalid1));
-        assertEquals(false,queryParse.queryCheck(updateInvalid2));
-        assertEquals(false,queryParse.queryCheck(updateInvalid3));
-        assertEquals(true,queryParse.queryCheck(updateInvalid4));
-
-    }
+//    @Test
+//    public void UpdateValidTest1(){
+//
+//        queryParse.queryCheck("USE TRIAL1;");
+//
+//        System.out.println("Valid Update query---------------");
+//        assertEquals(true,queryParse.queryCheck(updateValid1));
+//
+//    }
+//
+//    @Test
+//    public void UpdateValidTest2(){
+//
+//        queryParse.queryCheck("USE TRIAL1;");
+//
+//        System.out.println("Valid Update query---------------");
+//        assertEquals(true,queryParse.queryCheck(updateValid2));
+//
+//
+//    }
+//
+//    @Test
+//    public void UpdateValidTest3(){
+//
+//        queryParse.queryCheck("USE TRIAL1;");
+//
+//        System.out.println("Valid Update query---------------");
+//        assertEquals(true,queryParse.queryCheck(updateValid3));
+//
+//    }
+//
+//    @Test
+//    public void UpdateInvalidTests(){
+//
+//        queryParse.queryCheck("USE TRIAL1;");
+//
+//        System.out.println("Invalid update query -----------------");
+//        assertEquals(true,queryParse.queryCheck(updateInvalid1));
+//        assertEquals(false,queryParse.queryCheck(updateInvalid2));
+//        assertEquals(false,queryParse.queryCheck(updateInvalid3));
+//        assertEquals(true,queryParse.queryCheck(updateInvalid4));
+//
+//    }
 }

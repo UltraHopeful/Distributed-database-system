@@ -18,27 +18,27 @@ public class DeleteTest {
     private String deleteInvalid3 = "UPDATE todo SET todo_id = \"3\" WHERE todo == \"homework\";";
     private String deleteInvalid4 = "UPDATE todo SET is_completed = \"true\" WHERE todo_id == \"6\";";
 
-    @Test
-    public void deleteValidTest1(){
-        queryParse.queryCheck("USE TRIAL1;");
-
-        System.out.println("Valid Update query---------------");
-        assertEquals(true,queryParse.queryCheck(deleteValid1));
-    }
-
-    @Test
-    public void deleteValidTest2(){
-        queryParse.queryCheck("USE TRIAL1;");
-
-        System.out.println("Valid Update query---------------");
-        assertEquals(true,queryParse.queryCheck(deleteValid2));
-    }
-
-    @Test
-    public void deleteValidTest3(){
-        queryParse.queryCheck("USE TRIAL1;");
-
-        System.out.println("Valid Update query---------------");
-        assertEquals(true,queryParse.queryCheck(deleteValid3));
-    }
+//    @Test
+//    public void deleteValidTest1(){
+//        queryParse.queryCheck("USE TRIAL1;");
+//
+//        System.out.println("Valid Update query---------------");
+//        assertEquals(true,queryParse.queryCheck(deleteValid1));
+//    }
+//
+//    @Test
+//    public void deleteValidTest2(){
+//        queryParse.queryCheck("USE TRIAL1;");
+//
+//        System.out.println("Valid Update query---------------");
+//        assertEquals(true,queryParse.queryCheck(deleteValid2));
+//    }
+//
+//    @Test
+//    public void deleteValidTest3(){
+//        queryParse.queryCheck("USE TRIAL1;");
+//
+//        System.out.println("Valid Update query---------------");
+//        assertEquals(true,queryParse.queryCheck(deleteValid3));
+//    }
 }

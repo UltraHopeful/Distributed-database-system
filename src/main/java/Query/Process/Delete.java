@@ -16,7 +16,7 @@ public class Delete {
     private String delimiter = globalConfig.getDelimiter();
     private String rowDelimiter = globalConfig.getRowDelimiter();
 
-    public boolean check(String queryString) {
+    public boolean check(String queryString, boolean doWrite) {
 
         boolean isValidQuery = false;
 
@@ -68,7 +68,7 @@ public class Delete {
                             for (int index : indexToDeleteList) {
                                 String[] oldRow = rowData.get(index);
                                 System.out.println("oldRow = " + Arrays.toString(oldRow));
-                                deletedRowCount += common.updateDataRow(tableName, oldRow, null);
+                                deletedRowCount += common.updateDataRow(tableName, oldRow, null,doWrite);
                                 System.out.println("updatedRowCount = " + deletedRowCount);
                             }
                             isValidQuery = true;
