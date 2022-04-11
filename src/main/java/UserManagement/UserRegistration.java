@@ -8,6 +8,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Scanner;
 
+import DistributedSystem.DistributedSystemRun;
+
 public class UserRegistration
 {
     static GlobalConfig globalConfig = new GlobalConfig();
@@ -36,6 +38,7 @@ public class UserRegistration
             String securityAnswer = sc.nextLine();
             FileWriter writer = new FileWriter(basePath + "User@Profile.txt", true);
             writer.write(hashedUserID + delimiter + hashedPassword + delimiter + securityQuestion + delimiter + securityAnswer + "\n");
+            DistributedSystemRun.uploadFileData(basePath + "User@Profile.txt",hashedUserID + delimiter + hashedPassword + delimiter + securityQuestion + delimiter + securityAnswer + "\n", true);
             writer.close();
             System.out.println("User registered successfully.");
             System.out.println();

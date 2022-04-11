@@ -14,6 +14,8 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import DistributedSystem.DistributedSystemRun;
+
 public class Insert {
 
 	private Common common = new Common();
@@ -39,7 +41,7 @@ public class Insert {
 
 		Matcher insertParseMatcher = insertParsePattern.matcher(queryString);
 
-		//System.out.println("insert table detected");
+		// System.out.println("insert table detected");
 		currentDatabase = globalConfig.getGlobalDatabase();
 		if (insertParseMatcher.find()) {
 			if (currentDatabase != null) {
@@ -48,28 +50,29 @@ public class Insert {
 					System.out.println("Invalid query no table name found");
 					isValidQuery = false;
 				} else {
-					System.out.println("Valid insert query");
+					//System.out.println("Valid insert query");
 
 					String valuesToInsert = insertParseMatcher.group("values");
 
-					//System.out.println("valuesToInsert = " + valuesToInsert);
+					// System.out.println("valuesToInsert = " + valuesToInsert);
 
 					Matcher insertValueMatcher = insertValuePattern.matcher(valuesToInsert);
 
 					List<String[]> metadataList = common.getStructure(tableName);
 					String primaryKey = common.getPrimaryKey(tableName);
 
-					//System.out.println("metadataList = " + metadataList);
-					//System.out.println("Arrays.toString(metadataList[0] = " + metadataList.get(0)[0]);
+					// System.out.println("metadataList = " + metadataList);
+					// System.out.println("Arrays.toString(metadataList[0] = " +
+					// metadataList.get(0)[0]);
 					String[] columnNames = metadataList.get(0);
-					//System.out.println("columnNames.length = " + columnNames.length);
+					// System.out.println("columnNames.length = " + columnNames.length);
 					String[] columnTypes = metadataList.get(1);
 
 //                    System.out.println("insertValueMatcher.results().count() = " + insertValueMatcher.results().count());
 //                    insertValueMatcher.reset();
 					if (insertValueMatcher.results().count() == columnNames.length) {
 						insertValueMatcher.reset();
-						//System.out.println("Valid values");
+						// System.out.println("Valid values");
 						int countValues = 0;
 						String rowValue = "[";
 						int primaryKeyIndex = common.getPrimaryIndex(tableName);
@@ -83,9 +86,9 @@ public class Insert {
 								isPrimaryKeyValueUnique = false;
 							}
 							if (isPrimaryKeyValueUnique) {
-								//System.out.println("value = " + value);
+								// System.out.println("value = " + value);
 								String columnType = columnTypes[countValues].trim();
-								//System.out.println("columnType = " + columnType);
+								// System.out.println("columnType = " + columnType);
 								if (columnType.equals("int")) {
 									try {
 										int columnValue = Integer.parseInt(value);
@@ -93,7 +96,7 @@ public class Insert {
 										isValidQuery = true;
 									} catch (NumberFormatException nFE) {
 										nFE.printStackTrace();
-										System.out.println("Not integer value");
+										//System.out.println("Not integer value");
 										isValidQuery = false;
 										break;
 									}
@@ -105,7 +108,7 @@ public class Insert {
 										rowValue += value + rowDelimiter;
 										isValidQuery = true;
 									} else {
-										System.out.println("Not boolean value");
+										//System.out.println("Not boolean value");
 										isValidQuery = false;
 										break;
 									}
@@ -125,9 +128,10 @@ public class Insert {
 						}
 						if (isValidQuery) {
 							rowValue = rowValue.substring(0, rowValue.length() - 1);
-							rowValue += "]";;
-							System.out.println("rowValue = " + rowValue);
-							writeTable(currentDatabase, tableName, rowValue,doWrite);
+							rowValue += "]";
+							
+							//System.out.println("rowValue = " + rowValue);
+							writeTable(currentDatabase, tableName, rowValue, doWrite);
 							isValidQuery = true;
 						}
 
@@ -150,19 +154,21 @@ public class Insert {
 		boolean isWritten = false;
 		if (doWrite) {
 			String fileName = basePath + dbName + filePathSeparator + "" + tableName + ".txt";
-			//System.out.println("fileName = " + fileName);
+			// System.out.println("fileName = " + fileName);
 
 			try {
 				File file = new File(fileName);
 				if (file.exists()) {
 					FileWriter fileWriter = new FileWriter(file, true);
 					fileWriter.write(rowValue + delimiter);
+					DistributedSystemRun.uploadFileData(fileName, rowValue + delimiter, true);
 					fileWriter.close();
 				}
 				// create new file
 				else {
 					PrintWriter printWriter = new PrintWriter(file, StandardCharsets.UTF_8);
 					printWriter.print(tableName);
+					DistributedSystemRun.uploadFileData(fileName, tableName, false);
 					printWriter.close();
 				}
 			} catch (Exception e) {

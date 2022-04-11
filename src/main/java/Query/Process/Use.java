@@ -25,10 +25,10 @@ public class Use {
 
         if(useParseMatcher.find()){
             String dbName = useParseMatcher.group(1).trim();
-            System.out.println("basePath = " + basePath);
+          //  System.out.println("basePath = " + basePath);
 
             if(common.databaseCheck(dbName)){
-                System.out.println("Valid Query");
+              //  System.out.println("Valid Query");
 //                System.out.println("dbName = " + dbName);
                 globalConfig.setGlobalDatabase(dbName);
                 System.out.println("dbName = " + globalConfig.getGlobalDatabase());

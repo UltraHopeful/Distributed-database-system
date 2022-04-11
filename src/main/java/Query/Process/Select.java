@@ -31,7 +31,7 @@ public class Select {
 		if (currentDatabase != null) {
 			if (selectParseMatcher.find()) {
 				String tableName = selectParseMatcher.group("table").trim();
-				System.out.println("tableName = " + tableName);
+				//System.out.println("tableName = " + tableName);
 
 				List<String[]> rowData = common.getData(tableName);
 
@@ -49,7 +49,7 @@ public class Select {
 					isValidQuery = true;
 				} else {
 					String[] columnArrayList = columnsToShow.split(",");
-					System.out.println("columnArrayList.length = " + columnArrayList.length);
+					//System.out.println("columnArrayList.length = " + columnArrayList.length);
 					if (columnArrayList.length <= columnNamesList.size()) {
 						for (String columnName : columnArrayList) {
 							if (columnNamesList.contains(columnName)) {
@@ -68,8 +68,8 @@ public class Select {
 					Collections.sort(columnIndexToShowList);
 				}
 
-				System.out.println("columnIndexToShowList = " + columnIndexToShowList);
-				System.out.println("isValidQuery = " + isValidQuery);
+				//System.out.println("columnIndexToShowList = " + columnIndexToShowList);
+				//System.out.println("isValidQuery = " + isValidQuery);
 				String conditionColumnName = selectParseMatcher.group("conditionColumn");
 				String condition = selectParseMatcher.group("condition");
 				String conditionValue = selectParseMatcher.group("conditionValue");

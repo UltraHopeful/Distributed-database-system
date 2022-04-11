@@ -18,7 +18,7 @@ public class GlobalConfig {
 
 	private static String vmIP;
 
-	private static String basePath = "system" + pathSeparator + "";
+	private static String basePath = "/home/sarthakpatel0301/csci-5408-w2022-group-19/system" + pathSeparator + "";
 
 	public GlobalConfig() {
 	}

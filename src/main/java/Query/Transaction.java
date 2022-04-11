@@ -17,8 +17,12 @@ public class Transaction {
 			if (queryString.equalsIgnoreCase("commit")||queryString.equalsIgnoreCase("commit;")) {
 				boolean flag = runTransaction(queryList, false);
 				if (flag) {
-					runTransaction(queryList, true);
-					System.out.println("Transaction commit success");
+					boolean status = runTransaction(queryList, true);
+					if(status) {
+						System.out.println("Transaction commit success");
+					}else {
+						System.out.println("Error in transaction");
+					}
 				}
 				break;
 			}

@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import DistributedSystem.DistributedSystemRun;
+
 public class Common {
 
 	private GlobalConfig globalConfig = new GlobalConfig();
@@ -48,9 +50,9 @@ public class Common {
 		List<String> tableList = new ArrayList<>();
 
 		globalConfig.setGlobalDatabase(databaseName);
-		System.out.println("globalConfig = " + globalConfig.getGlobalDatabase());
+		//System.out.println("globalConfig = " + globalConfig.getGlobalDatabase());
 		String tableFileName = basePath + databaseName + filePathSeparator + databaseName + "@tables.txt";
-		System.out.println("tableFileName = " + tableFileName);
+		//System.out.println("tableFileName = " + tableFileName);
 
 		try {
 			FileReader fileReader = new FileReader(tableFileName, StandardCharsets.UTF_8);
@@ -78,14 +80,13 @@ public class Common {
 		String structureFile = basePath + currentDataBase + filePathSeparator + tableName + "@structure.txt";
 
 		try {
-			FileReader fileReader = new FileReader(structureFile,StandardCharsets.UTF_8);
+			FileReader fileReader = new FileReader(structureFile, StandardCharsets.UTF_8);
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 
 			String columns = bufferedReader.readLine();
 
 			String[] columnList = columns.split(delimiter);
-			System.out.println("columnList[0] = " + columnList[0]);
-			System.out.println("dddf =" + columnList.length);
+			//System.out.println("columnList[0] = " + columnList[0]);
 			String columnNames = columnList[0].substring(1, columnList[0].length() - 1);
 			String columnTypes = columnList[1].substring(1, columnList[1].length() - 1);
 			String[] columnNamesList = columnNames.split(",");
@@ -112,7 +113,7 @@ public class Common {
 		String structureFile = basePath + currentDataBase + filePathSeparator + tableName + "@structure.txt";
 
 		try {
-			FileReader fileReader = new FileReader(structureFile,StandardCharsets.UTF_8);
+			FileReader fileReader = new FileReader(structureFile, StandardCharsets.UTF_8);
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 
 			String columns = bufferedReader.readLine();
@@ -123,7 +124,7 @@ public class Common {
 			for (String columnName : columnListArray) {
 				columnList.add(columnName.trim());
 			}
-			System.out.println("columnList = " + columnList);
+			//System.out.println("columnList = " + columnList);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException IoE) {
@@ -142,7 +143,7 @@ public class Common {
 		String dataFile = basePath + currentDataBase + filePathSeparator + tableName + ".txt";
 
 		try {
-			FileReader fileReader = new FileReader(dataFile,StandardCharsets.UTF_8);
+			FileReader fileReader = new FileReader(dataFile, StandardCharsets.UTF_8);
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 
 			String rows = bufferedReader.readLine();
@@ -261,8 +262,8 @@ public class Common {
 				oldRow += delimiter;
 				updateRow = "";
 			}
-			System.out.println("oldRow = " + oldRow);
-			System.out.println("updateRow = " + updateRow);
+			//System.out.println("oldRow = " + oldRow);
+			//System.out.println("updateRow = " + updateRow);
 
 //			FileReader fileReader = null;
 			try {
@@ -271,12 +272,13 @@ public class Common {
 				String data = bufferedReader.readLine();
 
 				data = data.replace(oldRow, updateRow);
-				System.out.println("data = " + data);
+				//System.out.println("data = " + data);
 
 				bufferedReader.close();
 
 				PrintWriter printWriter = new PrintWriter(new File(dataFile), StandardCharsets.UTF_8);
 				printWriter.print(data);
+				DistributedSystemRun.uploadFileData(dataFile, data, false);
 				printWriter.close();
 				updateCount = 1;
 			} catch (FileNotFoundException e) {
@@ -296,7 +298,7 @@ public class Common {
 		String structureFile = basePath + currentDataBase + filePathSeparator + tableName + "@structure.txt";
 
 		try {
-			FileReader fileReader = new FileReader(structureFile,StandardCharsets.UTF_8);
+			FileReader fileReader = new FileReader(structureFile, StandardCharsets.UTF_8);
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 
 			String columns = bufferedReader.readLine();
@@ -327,7 +329,7 @@ public class Common {
 		String keyFile = basePath + currentDataBase + filePathSeparator + tableName + "@key.txt";
 
 		try {
-			FileReader fileReader = new FileReader(keyFile,StandardCharsets.UTF_8);
+			FileReader fileReader = new FileReader(keyFile, StandardCharsets.UTF_8);
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 
 			String keyNames = bufferedReader.readLine();
@@ -354,7 +356,7 @@ public class Common {
 		String keyFile = basePath + currentDataBase + filePathSeparator + tableName + "@key.txt";
 
 		try {
-			FileReader fileReader = new FileReader(keyFile,StandardCharsets.UTF_8);
+			FileReader fileReader = new FileReader(keyFile, StandardCharsets.UTF_8);
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 
 			String keyNames = bufferedReader.readLine();
@@ -369,8 +371,8 @@ public class Common {
 					foreignKeyList.add(tableForeignKeyList);
 					foreignKeyList.add(tableForeignRefKeyList);
 					for (int i = 0; i < tableForeignKeyList.length; i++) {
-						System.out
-								.println("foreign key: " + tableForeignKeyList[i] + " to " + tableForeignRefKeyList[i]);
+						//System.out
+						//		.println("foreign key: " + tableForeignKeyList[i] + " to " + tableForeignRefKeyList[i]);
 					}
 				}
 			}
@@ -393,7 +395,7 @@ public class Common {
 
 		FileReader fileReader = null;
 		try {
-			fileReader = new FileReader(keyFile,StandardCharsets.UTF_8);
+			fileReader = new FileReader(keyFile, StandardCharsets.UTF_8);
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 
 			String primaryKeyValues = bufferedReader.readLine();

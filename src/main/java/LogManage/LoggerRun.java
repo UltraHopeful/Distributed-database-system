@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import DistributedSystem.DistributedSystemRun;
 import Query.GlobalConfig;
 
 public class LoggerRun {
@@ -91,7 +92,6 @@ public void createFolder(){
 					+ valuedelimiter + tablecount + delimiter };
 			for (int i = 0; i < general_log_text.length; i++) {
 				general_log.write(general_log_text[i]);
-				general_log.close();
 			}
 		} catch (IOException e) {
 			System.out.println("General Logs Write Failed");
@@ -104,7 +104,6 @@ public void createFolder(){
 					+ valuedelimiter + tablename + valuedelimiter + query_type + valuedelimiter + status + delimiter };
 			for (int i = 0; i < event_log_text.length; i++) {
 				event_log.write(event_log_text[i]);
-				event_log.close();
 			}
 		} catch (Exception e) {
 			System.out.println("Crash error occured");
@@ -117,7 +116,6 @@ public void createFolder(){
 					+ getDateandTime() + delimiter };
 			for (int i = 0; i < query_log_text.length; i++) {
 				query_log.write(query_log_text[i]);
-				query_log.close();
 			}
 		} catch (Exception e) {
 			System.out.println("Query Logs Write Failed");

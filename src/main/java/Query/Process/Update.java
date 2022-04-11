@@ -28,20 +28,20 @@ public class Update {
 
         Pattern updateParsePattern = Pattern.compile(updateParseRegex, Pattern.MULTILINE | Pattern.CASE_INSENSITIVE);
 
-        System.out.println("queryString = " + queryString);
+        //System.out.println("queryString = " + queryString);
 
         Matcher updateParseMatcher = updateParsePattern.matcher(queryString);
 
 
-        System.out.println("Update detected");
+        //System.out.println("Update detected");
         currentDatabase = globalConfig.getGlobalDatabase();
 
         if (currentDatabase != null) {
-            System.out.println(updateParseMatcher.results().count()+" match found");
+           // System.out.println(updateParseMatcher.results().count()+" match found");
             updateParseMatcher.reset();
             if (updateParseMatcher.find()) {
                 String tableName = updateParseMatcher.group("table").trim();
-                System.out.println("tableName = " + tableName);
+               // System.out.println("tableName = " + tableName);
                 if (common.tableCheck(tableName)) {
                     String primaryKeyName = common.getPrimaryKey(tableName);
 
@@ -51,26 +51,26 @@ public class Update {
                     String condition = updateParseMatcher.group("condition");
                     String conditionValue = updateParseMatcher.group("conditionValue").trim();
 
-                    System.out.println("updateColumnName = " + updateColumnName);
-                    System.out.println("updateColumnValue = " + updateColumnValue);
-                    System.out.println("conditionColumnName = " + conditionColumnName);
-                    System.out.println("condition = " + condition);
-                    System.out.println("conditionValue = " + conditionValue);
+//                    System.out.println("updateColumnName = " + updateColumnName);
+//                    System.out.println("updateColumnValue = " + updateColumnValue);
+//                    System.out.println("conditionColumnName = " + conditionColumnName);
+//                    System.out.println("condition = " + condition);
+//                    System.out.println("conditionValue = " + conditionValue);
                     
                     List<String> columnNamesList = common.getColumnNames(tableName);
 
                     List<Object> primaryKeyList = common.getPrimaryKeyList(tableName);
 
                     if (columnNamesList.contains(updateColumnName) && columnNamesList.contains(conditionColumnName)) {
-                        System.out.println("columnNames are valid");
+                       // System.out.println("columnNames are valid");
                         List<String[]> rowData = common.getData(tableName);
                         int updateColumnIndex = columnNamesList.indexOf(updateColumnName);
                         int conditionColumnIndex = columnNamesList.indexOf(conditionColumnName);
 
                         List<Integer> indexToUpdateList = common.getSelectedRows(tableName, conditionColumnIndex, condition, conditionValue);
 
-                        System.out.println("indexToUpdateList.size() = " + indexToUpdateList.size());
-                        System.out.println("indexToUpdateList = " + indexToUpdateList);
+                       // System.out.println("indexToUpdateList.size() = " + indexToUpdateList.size());
+                      //  System.out.println("indexToUpdateList = " + indexToUpdateList);
                         
                         if (indexToUpdateList == null) {
                             System.out.println("Invalid operator for data type provided");
@@ -86,15 +86,15 @@ public class Update {
                                 if (indexToUpdateList.size() == 1 && !primaryKeyList.contains(updateColumnValue)) {
                                     String[] oldRow = rowData.get(indexToUpdateList.get(0));
                                     String[] newRow = Arrays.copyOf(oldRow,oldRow.length);
-                                    System.out.println("newRow = " + Arrays.toString(oldRow));
+                                   // System.out.println("newRow = " + Arrays.toString(oldRow));
                                     if (newRow[updateColumnIndex].equals(updateColumnValue)) {
                                         System.out.println("No changes");
                                     } else {
                                         newRow[updateColumnIndex] = updateColumnValue;
-                                        System.out.println("oldRow = " + Arrays.toString(oldRow));
-                                        System.out.println("newRow = " + Arrays.toString(newRow));
+                                      //  System.out.println("oldRow = " + Arrays.toString(oldRow));
+                                      //  System.out.println("newRow = " + Arrays.toString(newRow));
                                         updatedRowCount += common.updateDataRow(tableName, oldRow, newRow,doWrite);
-                                        System.out.println("updatedRowCount = " + updatedRowCount);
+                                       // System.out.println("updatedRowCount = " + updatedRowCount);
                                     }
                                     isValidQuery = true;
                                 } else {
@@ -105,15 +105,15 @@ public class Update {
                                 for (int index : indexToUpdateList) {
                                     String[] oldRow = rowData.get(index);
                                     String[] newRow = Arrays.copyOf(oldRow,oldRow.length);
-                                    System.out.println("Arrays.toString(newRow) = " + Arrays.toString(oldRow));
+                                   // System.out.println("Arrays.toString(newRow) = " + Arrays.toString(oldRow));
                                     if (newRow[updateColumnIndex].equals(updateColumnValue)) {
                                         System.out.println("No changes");
                                     } else {
                                         newRow[updateColumnIndex] = updateColumnValue;
-                                        System.out.println("oldRow = " + Arrays.toString(oldRow));
-                                        System.out.println("Arrays.toString(newRow) = " + Arrays.toString(newRow));
+                                       // System.out.println("oldRow = " + Arrays.toString(oldRow));
+                                      //  System.out.println("Arrays.toString(newRow) = " + Arrays.toString(newRow));
                                         updatedRowCount += common.updateDataRow(tableName, oldRow, newRow,doWrite);
-                                        System.out.println("updatedRowCount = " + updatedRowCount);
+                                       // System.out.println("updatedRowCount = " + updatedRowCount);
                                     }
                                     isValidQuery = true;
                                 }

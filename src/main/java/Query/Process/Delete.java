@@ -34,7 +34,7 @@ public class Delete {
         if (currentDatabase != null) {
             if (deleteParseMatcher.find()) {
                 String tableName = deleteParseMatcher.group("table").trim();
-                System.out.println("tableName = " + tableName);
+               // System.out.println("tableName = " + tableName);
                 if (common.tableCheck(tableName)) {
                     String primaryKeyName = common.getPrimaryKey(tableName);
 
@@ -47,15 +47,15 @@ public class Delete {
                     List<Object> primaryKeyList = common.getPrimaryKeyList(tableName);
 
                     if (columnNamesList.contains(conditionColumnName)) {
-                        System.out.println("Column name is valid");
+                       // System.out.println("Column name is valid");
 
                         List<String[]> rowData = common.getData(tableName);
                         int conditionColumnIndex = columnNamesList.indexOf(conditionColumnName);
 
                         List<Integer> indexToDeleteList = common.getSelectedRows(tableName, conditionColumnIndex, condition, conditionValue);
 
-                        System.out.println("indexToDeleteList.size() = " + indexToDeleteList.size());
-                        System.out.println("indexToDeleteList = " + indexToDeleteList);
+                      //  System.out.println("indexToDeleteList.size() = " + indexToDeleteList.size());
+                      //  System.out.println("indexToDeleteList = " + indexToDeleteList);
 
                         if (indexToDeleteList == null) {
                             System.out.println("Invalid operator for data type provided");
@@ -67,10 +67,12 @@ public class Delete {
                             int deletedRowCount = 0;
                             for (int index : indexToDeleteList) {
                                 String[] oldRow = rowData.get(index);
-                                System.out.println("oldRow = " + Arrays.toString(oldRow));
+                               // System.out.println("oldRow = " + Arrays.toString(oldRow));
                                 deletedRowCount += common.updateDataRow(tableName, oldRow, null,doWrite);
-                                System.out.println("updatedRowCount = " + deletedRowCount);
+                                
                             }
+                            deletedRowCount = indexToDeleteList.size();
+                            System.out.println(deletedRowCount + " row deleted");
                             isValidQuery = true;
                         }
 
